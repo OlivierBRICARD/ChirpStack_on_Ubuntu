@@ -1916,7 +1916,7 @@ SET row_security = off;
 
 SET default_tablespace = '';
 
-SET default_with_oids = false;
+--SET default_with_oids = false;
 
 --
 -- Name: code_migration; Type: TABLE; Schema: public; Owner: chirpstack

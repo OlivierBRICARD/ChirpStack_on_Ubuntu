@@ -31,16 +31,15 @@ sudo apt install chirpstack
 sudo apt install chirpstack-gateway-bridge
 
 #4. configuration de lora
-
 # configuration de chirpstack Server
 #cp -f /etc/chirpstack-network-server/chirpstack-network-server.toml  /etc/chirpstack-network-server/chirpstack-network-server.toml_bak
 cp -rf ./chirpstack_conf/*  /etc/chirpstack/
-chown -R networkserver:networkserver /etc/chirpstack
+#chown -R networkserver:networkserver /etc/chirpstack
 
 # configuration de chirpstack App Server
 #cp -f /etc/chirpstack-application-server/chirpstack-application-server.toml /etc/chirpstack-application-server/chirpstack-application-server.toml_bak
 #cp -f ./chirpstack-application-server.toml /etc/chirpstack-application-server/chirpstack-application-server.toml
-chown -R appserver:appserver /etc/chirpstack
+#chown -R appserver:appserver /etc/chirpstack
 
 # Demarrer chirpstack
 sudo systemctl start chirpstack

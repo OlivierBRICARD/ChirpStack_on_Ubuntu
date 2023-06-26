@@ -16,7 +16,7 @@
 #
 # Besides using an URL (e.g. 'postgres://user:password@hostname/database?sslmode=disable')
 # it is also possible to use the following format:
-# 'user=chirpstack_ns dbname=chirpstack_ns sslmode=disable'.
+# 'user=chirpstack dbname=chirpstack sslmode=disable'.
 #
 # The following connection parameters are supported:
 #
@@ -38,7 +38,7 @@
 # * require - Always SSL (skip verification)
 # * verify-ca - Always SSL (verify that the certificate presented by the server was signed by a trusted CA)
 # * verify-full - Always SSL (verify that the certification presented by the server was signed by a trusted CA and the server host name matches the one in the certificate)
-dsn="postgres://chirpstack_ns:dbpassword@localhost/chirpstack_ns?sslmode=disable"
+dsn="postgres://chirpstack:dbpassword@localhost/chirpstack?sslmode=disable"
 
 
 # Redis settings

@@ -14,7 +14,7 @@
 #
 # Besides using an URL (e.g. 'postgres://user:password@hostname/database?sslmode=disable')
 # it is also possible to use the following format:
-# 'user=chirpstack_as dbname=chirpstack_as sslmode=disable'.
+# 'user=chirpstack dbname=chirpstack sslmode=disable'.
 #
 # The following connection parameters are supported:
 #
@@ -36,8 +36,8 @@
 # * require - Always SSL (skip verification)
 # * verify-ca - Always SSL (verify that the certificate presented by the server was signed by a trusted CA)
 # * verify-full - Always SSL (verify that the certification presented by the server was signed by a trusted CA and the server host name matches the one in the certificate)
-# dsn="postgres://localhost/chirpstack_as?sslmode=disable"
-dsn="postgres://chirpstack_as:dbpassword@localhost/chirpstack_as?sslmode=disable"
+# dsn="postgres://localhost/chirpstack?sslmode=disable"
+dsn="postgres://chirpstack:dbpassword@localhost/chirpstack?sslmode=disable"
 
 
 # Redis settings
@@ -65,7 +65,7 @@ url="redis://localhost:6379"
 
     # MQTT integration backend.
     [application_server.integration.mqtt]
-    # MQTT topic templates for the different MQTT topics.
+    # MQTT topic s for the different MQTT topics.
     #
     # The meaning of these topics are documented at:
     # https://www.chirpstack.io/application-server/integrate/data/

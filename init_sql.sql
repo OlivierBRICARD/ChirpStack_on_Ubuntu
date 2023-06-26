@@ -11,10 +11,8 @@ SET standard_conforming_strings = on;
 -- Roles
 --
 
-CREATE ROLE chirpstack_as;
-ALTER ROLE chirpstack_as WITH NOSUPERUSER INHERIT NOCREATEROLE NOCREATEDB LOGIN NOREPLICATION NOBYPASSRLS PASSWORD 'md54eac16be2e6c5b418ce2bc7d2c05a635';
-CREATE ROLE chirpstack_ns;
-ALTER ROLE chirpstack_ns WITH NOSUPERUSER INHERIT NOCREATEROLE NOCREATEDB LOGIN NOREPLICATION NOBYPASSRLS PASSWORD 'md571269333057d9ebe969d61173b7ae2d9';
+CREATE ROLE chirpstack;
+ALTER ROLE chirpstack WITH NOSUPERUSER INHERIT NOCREATEROLE NOCREATEDB LOGIN NOREPLICATION NOBYPASSRLS PASSWORD 'md5c887eb4246628762d001965d62e1101b';
 CREATE ROLE postgres;
 ALTER ROLE postgres WITH SUPERUSER INHERIT CREATEROLE CREATEDB LOGIN REPLICATION BYPASSRLS;
 
@@ -23,7 +21,7 @@ ALTER ROLE postgres WITH SUPERUSER INHERIT CREATEROLE CREATEDB LOGIN REPLICATION
 
 
 
-\connect template1
+\connect chirpstack
 
 --
 -- PostgreSQL database dump
@@ -66,15 +64,15 @@ SET client_min_messages = warning;
 SET row_security = off;
 
 --
--- Name: chirpstack_as; Type: DATABASE; Schema: -; Owner: chirpstack_as
+-- Name: chirpstack; Type: DATABASE; Schema: -; Owner: chirpstack
 --
 
-CREATE DATABASE chirpstack_as WITH TEMPLATE = template0 ENCODING = 'UTF8' LC_COLLATE = 'en_GB.UTF-8' LC_CTYPE = 'en_GB.UTF-8';
+CREATE DATABASE chirpstack WITH TEMPLATE = template0 ENCODING = 'UTF8' LC_COLLATE = 'en_GB.UTF-8' LC_CTYPE = 'en_GB.UTF-8';
 
 
-ALTER DATABASE chirpstack_as OWNER TO chirpstack_as;
+ALTER DATABASE chirpstack OWNER TO chirpstack;
 
-\connect chirpstack_as
+\connect chirpstack
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -120,7 +118,7 @@ SET default_tablespace = '';
 SET default_with_oids = false;
 
 --
--- Name: application; Type: TABLE; Schema: public; Owner: chirpstack_as
+-- Name: application; Type: TABLE; Schema: public; Owner: chirpstack
 --
 
 CREATE TABLE public.application (
@@ -135,10 +133,10 @@ CREATE TABLE public.application (
 );
 
 
-ALTER TABLE public.application OWNER TO chirpstack_as;
+ALTER TABLE public.application OWNER TO chirpstack;
 
 --
--- Name: application_id_seq; Type: SEQUENCE; Schema: public; Owner: chirpstack_as
+-- Name: application_id_seq; Type: SEQUENCE; Schema: public; Owner: chirpstack
 --
 
 CREATE SEQUENCE public.application_id_seq
@@ -149,17 +147,17 @@ CREATE SEQUENCE public.application_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.application_id_seq OWNER TO chirpstack_as;
+ALTER TABLE public.application_id_seq OWNER TO chirpstack;
 
 --
--- Name: application_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: chirpstack_as
+-- Name: application_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: chirpstack
 --
 
 ALTER SEQUENCE public.application_id_seq OWNED BY public.application.id;
 
 
 --
--- Name: code_migration; Type: TABLE; Schema: public; Owner: chirpstack_as
+-- Name: code_migration; Type: TABLE; Schema: public; Owner: chirpstack
 --
 
 CREATE TABLE public.code_migration (
@@ -168,10 +166,10 @@ CREATE TABLE public.code_migration (
 );
 
 
-ALTER TABLE public.code_migration OWNER TO chirpstack_as;
+ALTER TABLE public.code_migration OWNER TO chirpstack;
 
 --
--- Name: device; Type: TABLE; Schema: public; Owner: chirpstack_as
+-- Name: device; Type: TABLE; Schema: public; Owner: chirpstack
 --
 
 CREATE TABLE public.device (
@@ -197,10 +195,10 @@ CREATE TABLE public.device (
 );
 
 
-ALTER TABLE public.device OWNER TO chirpstack_as;
+ALTER TABLE public.device OWNER TO chirpstack;
 
 --
--- Name: device_keys; Type: TABLE; Schema: public; Owner: chirpstack_as
+-- Name: device_keys; Type: TABLE; Schema: public; Owner: chirpstack
 --
 
 CREATE TABLE public.device_keys (
@@ -214,10 +212,10 @@ CREATE TABLE public.device_keys (
 );
 
 
-ALTER TABLE public.device_keys OWNER TO chirpstack_as;
+ALTER TABLE public.device_keys OWNER TO chirpstack;
 
 --
--- Name: device_multicast_group; Type: TABLE; Schema: public; Owner: chirpstack_as
+-- Name: device_multicast_group; Type: TABLE; Schema: public; Owner: chirpstack
 --
 
 CREATE TABLE public.device_multicast_group (
@@ -227,10 +225,10 @@ CREATE TABLE public.device_multicast_group (
 );
 
 
-ALTER TABLE public.device_multicast_group OWNER TO chirpstack_as;
+ALTER TABLE public.device_multicast_group OWNER TO chirpstack;
 
 --
--- Name: device_profile; Type: TABLE; Schema: public; Owner: chirpstack_as
+-- Name: device_profile; Type: TABLE; Schema: public; Owner: chirpstack
 --
 
 CREATE TABLE public.device_profile (
@@ -247,10 +245,10 @@ CREATE TABLE public.device_profile (
 );
 
 
-ALTER TABLE public.device_profile OWNER TO chirpstack_as;
+ALTER TABLE public.device_profile OWNER TO chirpstack;
 
 --
--- Name: fuota_deployment; Type: TABLE; Schema: public; Owner: chirpstack_as
+-- Name: fuota_deployment; Type: TABLE; Schema: public; Owner: chirpstack
 --
 
 CREATE TABLE public.fuota_deployment (
@@ -276,10 +274,10 @@ CREATE TABLE public.fuota_deployment (
 );
 
 
-ALTER TABLE public.fuota_deployment OWNER TO chirpstack_as;
+ALTER TABLE public.fuota_deployment OWNER TO chirpstack;
 
 --
--- Name: fuota_deployment_device; Type: TABLE; Schema: public; Owner: chirpstack_as
+-- Name: fuota_deployment_device; Type: TABLE; Schema: public; Owner: chirpstack
 --
 
 CREATE TABLE public.fuota_deployment_device (
@@ -292,10 +290,10 @@ CREATE TABLE public.fuota_deployment_device (
 );
 
 
-ALTER TABLE public.fuota_deployment_device OWNER TO chirpstack_as;
+ALTER TABLE public.fuota_deployment_device OWNER TO chirpstack;
 
 --
--- Name: gateway; Type: TABLE; Schema: public; Owner: chirpstack_as
+-- Name: gateway; Type: TABLE; Schema: public; Owner: chirpstack
 --
 
 CREATE TABLE public.gateway (
@@ -320,10 +318,10 @@ CREATE TABLE public.gateway (
 );
 
 
-ALTER TABLE public.gateway OWNER TO chirpstack_as;
+ALTER TABLE public.gateway OWNER TO chirpstack;
 
 --
--- Name: gateway_ping; Type: TABLE; Schema: public; Owner: chirpstack_as
+-- Name: gateway_ping; Type: TABLE; Schema: public; Owner: chirpstack
 --
 
 CREATE TABLE public.gateway_ping (
@@ -335,10 +333,10 @@ CREATE TABLE public.gateway_ping (
 );
 
 
-ALTER TABLE public.gateway_ping OWNER TO chirpstack_as;
+ALTER TABLE public.gateway_ping OWNER TO chirpstack;
 
 --
--- Name: gateway_ping_id_seq; Type: SEQUENCE; Schema: public; Owner: chirpstack_as
+-- Name: gateway_ping_id_seq; Type: SEQUENCE; Schema: public; Owner: chirpstack
 --
 
 CREATE SEQUENCE public.gateway_ping_id_seq
@@ -349,17 +347,17 @@ CREATE SEQUENCE public.gateway_ping_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.gateway_ping_id_seq OWNER TO chirpstack_as;
+ALTER TABLE public.gateway_ping_id_seq OWNER TO chirpstack;
 
 --
--- Name: gateway_ping_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: chirpstack_as
+-- Name: gateway_ping_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: chirpstack
 --
 
 ALTER SEQUENCE public.gateway_ping_id_seq OWNED BY public.gateway_ping.id;
 
 
 --
--- Name: gateway_ping_rx; Type: TABLE; Schema: public; Owner: chirpstack_as
+-- Name: gateway_ping_rx; Type: TABLE; Schema: public; Owner: chirpstack
 --
 
 CREATE TABLE public.gateway_ping_rx (
@@ -375,10 +373,10 @@ CREATE TABLE public.gateway_ping_rx (
 );
 
 
-ALTER TABLE public.gateway_ping_rx OWNER TO chirpstack_as;
+ALTER TABLE public.gateway_ping_rx OWNER TO chirpstack;
 
 --
--- Name: gateway_ping_rx_id_seq; Type: SEQUENCE; Schema: public; Owner: chirpstack_as
+-- Name: gateway_ping_rx_id_seq; Type: SEQUENCE; Schema: public; Owner: chirpstack
 --
 
 CREATE SEQUENCE public.gateway_ping_rx_id_seq
@@ -389,17 +387,17 @@ CREATE SEQUENCE public.gateway_ping_rx_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.gateway_ping_rx_id_seq OWNER TO chirpstack_as;
+ALTER TABLE public.gateway_ping_rx_id_seq OWNER TO chirpstack;
 
 --
--- Name: gateway_ping_rx_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: chirpstack_as
+-- Name: gateway_ping_rx_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: chirpstack
 --
 
 ALTER SEQUENCE public.gateway_ping_rx_id_seq OWNED BY public.gateway_ping_rx.id;
 
 
 --
--- Name: gateway_profile; Type: TABLE; Schema: public; Owner: chirpstack_as
+-- Name: gateway_profile; Type: TABLE; Schema: public; Owner: chirpstack
 --
 
 CREATE TABLE public.gateway_profile (
@@ -411,10 +409,10 @@ CREATE TABLE public.gateway_profile (
 );
 
 
-ALTER TABLE public.gateway_profile OWNER TO chirpstack_as;
+ALTER TABLE public.gateway_profile OWNER TO chirpstack;
 
 --
--- Name: gorp_migrations; Type: TABLE; Schema: public; Owner: chirpstack_as
+-- Name: gorp_migrations; Type: TABLE; Schema: public; Owner: chirpstack
 --
 
 CREATE TABLE public.gorp_migrations (
@@ -423,10 +421,10 @@ CREATE TABLE public.gorp_migrations (
 );
 
 
-ALTER TABLE public.gorp_migrations OWNER TO chirpstack_as;
+ALTER TABLE public.gorp_migrations OWNER TO chirpstack;
 
 --
--- Name: integration; Type: TABLE; Schema: public; Owner: chirpstack_as
+-- Name: integration; Type: TABLE; Schema: public; Owner: chirpstack
 --
 
 CREATE TABLE public.integration (
@@ -439,10 +437,10 @@ CREATE TABLE public.integration (
 );
 
 
-ALTER TABLE public.integration OWNER TO chirpstack_as;
+ALTER TABLE public.integration OWNER TO chirpstack;
 
 --
--- Name: integration_id_seq; Type: SEQUENCE; Schema: public; Owner: chirpstack_as
+-- Name: integration_id_seq; Type: SEQUENCE; Schema: public; Owner: chirpstack
 --
 
 CREATE SEQUENCE public.integration_id_seq
@@ -453,17 +451,17 @@ CREATE SEQUENCE public.integration_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.integration_id_seq OWNER TO chirpstack_as;
+ALTER TABLE public.integration_id_seq OWNER TO chirpstack;
 
 --
--- Name: integration_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: chirpstack_as
+-- Name: integration_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: chirpstack
 --
 
 ALTER SEQUENCE public.integration_id_seq OWNED BY public.integration.id;
 
 
 --
--- Name: multicast_group; Type: TABLE; Schema: public; Owner: chirpstack_as
+-- Name: multicast_group; Type: TABLE; Schema: public; Owner: chirpstack
 --
 
 CREATE TABLE public.multicast_group (
@@ -477,10 +475,10 @@ CREATE TABLE public.multicast_group (
 );
 
 
-ALTER TABLE public.multicast_group OWNER TO chirpstack_as;
+ALTER TABLE public.multicast_group OWNER TO chirpstack;
 
 --
--- Name: network_server; Type: TABLE; Schema: public; Owner: chirpstack_as
+-- Name: network_server; Type: TABLE; Schema: public; Owner: chirpstack
 --
 
 CREATE TABLE public.network_server (
@@ -502,10 +500,10 @@ CREATE TABLE public.network_server (
 );
 
 
-ALTER TABLE public.network_server OWNER TO chirpstack_as;
+ALTER TABLE public.network_server OWNER TO chirpstack;
 
 --
--- Name: network_server_id_seq; Type: SEQUENCE; Schema: public; Owner: chirpstack_as
+-- Name: network_server_id_seq; Type: SEQUENCE; Schema: public; Owner: chirpstack
 --
 
 CREATE SEQUENCE public.network_server_id_seq
@@ -516,17 +514,17 @@ CREATE SEQUENCE public.network_server_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.network_server_id_seq OWNER TO chirpstack_as;
+ALTER TABLE public.network_server_id_seq OWNER TO chirpstack;
 
 --
--- Name: network_server_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: chirpstack_as
+-- Name: network_server_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: chirpstack
 --
 
 ALTER SEQUENCE public.network_server_id_seq OWNED BY public.network_server.id;
 
 
 --
--- Name: organization; Type: TABLE; Schema: public; Owner: chirpstack_as
+-- Name: organization; Type: TABLE; Schema: public; Owner: chirpstack
 --
 
 CREATE TABLE public.organization (
@@ -539,10 +537,10 @@ CREATE TABLE public.organization (
 );
 
 
-ALTER TABLE public.organization OWNER TO chirpstack_as;
+ALTER TABLE public.organization OWNER TO chirpstack;
 
 --
--- Name: organization_id_seq; Type: SEQUENCE; Schema: public; Owner: chirpstack_as
+-- Name: organization_id_seq; Type: SEQUENCE; Schema: public; Owner: chirpstack
 --
 
 CREATE SEQUENCE public.organization_id_seq
@@ -553,17 +551,17 @@ CREATE SEQUENCE public.organization_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.organization_id_seq OWNER TO chirpstack_as;
+ALTER TABLE public.organization_id_seq OWNER TO chirpstack;
 
 --
--- Name: organization_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: chirpstack_as
+-- Name: organization_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: chirpstack
 --
 
 ALTER SEQUENCE public.organization_id_seq OWNED BY public.organization.id;
 
 
 --
--- Name: organization_user; Type: TABLE; Schema: public; Owner: chirpstack_as
+-- Name: organization_user; Type: TABLE; Schema: public; Owner: chirpstack
 --
 
 CREATE TABLE public.organization_user (
@@ -578,10 +576,10 @@ CREATE TABLE public.organization_user (
 );
 
 
-ALTER TABLE public.organization_user OWNER TO chirpstack_as;
+ALTER TABLE public.organization_user OWNER TO chirpstack;
 
 --
--- Name: organization_user_id_seq; Type: SEQUENCE; Schema: public; Owner: chirpstack_as
+-- Name: organization_user_id_seq; Type: SEQUENCE; Schema: public; Owner: chirpstack
 --
 
 CREATE SEQUENCE public.organization_user_id_seq
@@ -592,17 +590,17 @@ CREATE SEQUENCE public.organization_user_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.organization_user_id_seq OWNER TO chirpstack_as;
+ALTER TABLE public.organization_user_id_seq OWNER TO chirpstack;
 
 --
--- Name: organization_user_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: chirpstack_as
+-- Name: organization_user_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: chirpstack
 --
 
 ALTER SEQUENCE public.organization_user_id_seq OWNED BY public.organization_user.id;
 
 
 --
--- Name: remote_fragmentation_session; Type: TABLE; Schema: public; Owner: chirpstack_as
+-- Name: remote_fragmentation_session; Type: TABLE; Schema: public; Owner: chirpstack
 --
 
 CREATE TABLE public.remote_fragmentation_session (
@@ -625,10 +623,10 @@ CREATE TABLE public.remote_fragmentation_session (
 );
 
 
-ALTER TABLE public.remote_fragmentation_session OWNER TO chirpstack_as;
+ALTER TABLE public.remote_fragmentation_session OWNER TO chirpstack;
 
 --
--- Name: remote_multicast_class_c_session; Type: TABLE; Schema: public; Owner: chirpstack_as
+-- Name: remote_multicast_class_c_session; Type: TABLE; Schema: public; Owner: chirpstack
 --
 
 CREATE TABLE public.remote_multicast_class_c_session (
@@ -648,10 +646,10 @@ CREATE TABLE public.remote_multicast_class_c_session (
 );
 
 
-ALTER TABLE public.remote_multicast_class_c_session OWNER TO chirpstack_as;
+ALTER TABLE public.remote_multicast_class_c_session OWNER TO chirpstack;
 
 --
--- Name: remote_multicast_setup; Type: TABLE; Schema: public; Owner: chirpstack_as
+-- Name: remote_multicast_setup; Type: TABLE; Schema: public; Owner: chirpstack
 --
 
 CREATE TABLE public.remote_multicast_setup (
@@ -672,10 +670,10 @@ CREATE TABLE public.remote_multicast_setup (
 );
 
 
-ALTER TABLE public.remote_multicast_setup OWNER TO chirpstack_as;
+ALTER TABLE public.remote_multicast_setup OWNER TO chirpstack;
 
 --
--- Name: service_profile; Type: TABLE; Schema: public; Owner: chirpstack_as
+-- Name: service_profile; Type: TABLE; Schema: public; Owner: chirpstack
 --
 
 CREATE TABLE public.service_profile (
@@ -688,10 +686,10 @@ CREATE TABLE public.service_profile (
 );
 
 
-ALTER TABLE public.service_profile OWNER TO chirpstack_as;
+ALTER TABLE public.service_profile OWNER TO chirpstack;
 
 --
--- Name: user; Type: TABLE; Schema: public; Owner: chirpstack_as
+-- Name: user; Type: TABLE; Schema: public; Owner: chirpstack
 --
 
 CREATE TABLE public."user" (
@@ -708,10 +706,10 @@ CREATE TABLE public."user" (
 );
 
 
-ALTER TABLE public."user" OWNER TO chirpstack_as;
+ALTER TABLE public."user" OWNER TO chirpstack;
 
 --
--- Name: user_id_seq; Type: SEQUENCE; Schema: public; Owner: chirpstack_as
+-- Name: user_id_seq; Type: SEQUENCE; Schema: public; Owner: chirpstack
 --
 
 CREATE SEQUENCE public.user_id_seq
@@ -722,73 +720,73 @@ CREATE SEQUENCE public.user_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.user_id_seq OWNER TO chirpstack_as;
+ALTER TABLE public.user_id_seq OWNER TO chirpstack;
 
 --
--- Name: user_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: chirpstack_as
+-- Name: user_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: chirpstack
 --
 
 ALTER SEQUENCE public.user_id_seq OWNED BY public."user".id;
 
 
 --
--- Name: application id; Type: DEFAULT; Schema: public; Owner: chirpstack_as
+-- Name: application id; Type: DEFAULT; Schema: public; Owner: chirpstack
 --
 
 ALTER TABLE ONLY public.application ALTER COLUMN id SET DEFAULT nextval('public.application_id_seq'::regclass);
 
 
 --
--- Name: gateway_ping id; Type: DEFAULT; Schema: public; Owner: chirpstack_as
+-- Name: gateway_ping id; Type: DEFAULT; Schema: public; Owner: chirpstack
 --
 
 ALTER TABLE ONLY public.gateway_ping ALTER COLUMN id SET DEFAULT nextval('public.gateway_ping_id_seq'::regclass);
 
 
 --
--- Name: gateway_ping_rx id; Type: DEFAULT; Schema: public; Owner: chirpstack_as
+-- Name: gateway_ping_rx id; Type: DEFAULT; Schema: public; Owner: chirpstack
 --
 
 ALTER TABLE ONLY public.gateway_ping_rx ALTER COLUMN id SET DEFAULT nextval('public.gateway_ping_rx_id_seq'::regclass);
 
 
 --
--- Name: integration id; Type: DEFAULT; Schema: public; Owner: chirpstack_as
+-- Name: integration id; Type: DEFAULT; Schema: public; Owner: chirpstack
 --
 
 ALTER TABLE ONLY public.integration ALTER COLUMN id SET DEFAULT nextval('public.integration_id_seq'::regclass);
 
 
 --
--- Name: network_server id; Type: DEFAULT; Schema: public; Owner: chirpstack_as
+-- Name: network_server id; Type: DEFAULT; Schema: public; Owner: chirpstack
 --
 
 ALTER TABLE ONLY public.network_server ALTER COLUMN id SET DEFAULT nextval('public.network_server_id_seq'::regclass);
 
 
 --
--- Name: organization id; Type: DEFAULT; Schema: public; Owner: chirpstack_as
+-- Name: organization id; Type: DEFAULT; Schema: public; Owner: chirpstack
 --
 
 ALTER TABLE ONLY public.organization ALTER COLUMN id SET DEFAULT nextval('public.organization_id_seq'::regclass);
 
 
 --
--- Name: organization_user id; Type: DEFAULT; Schema: public; Owner: chirpstack_as
+-- Name: organization_user id; Type: DEFAULT; Schema: public; Owner: chirpstack
 --
 
 ALTER TABLE ONLY public.organization_user ALTER COLUMN id SET DEFAULT nextval('public.organization_user_id_seq'::regclass);
 
 
 --
--- Name: user id; Type: DEFAULT; Schema: public; Owner: chirpstack_as
+-- Name: user id; Type: DEFAULT; Schema: public; Owner: chirpstack
 --
 
 ALTER TABLE ONLY public."user" ALTER COLUMN id SET DEFAULT nextval('public.user_id_seq'::regclass);
 
 
 --
--- Data for Name: application; Type: TABLE DATA; Schema: public; Owner: chirpstack_as
+-- Data for Name: application; Type: TABLE DATA; Schema: public; Owner: chirpstack
 --
 
 COPY public.application (id, name, description, organization_id, service_profile_id, payload_codec, payload_encoder_script, payload_decoder_script) FROM stdin;
@@ -796,7 +794,7 @@ COPY public.application (id, name, description, organization_id, service_profile
 
 
 --
--- Data for Name: code_migration; Type: TABLE DATA; Schema: public; Owner: chirpstack_as
+-- Data for Name: code_migration; Type: TABLE DATA; Schema: public; Owner: chirpstack
 --
 
 COPY public.code_migration (id, applied_at) FROM stdin;
@@ -805,7 +803,7 @@ migrate_gw_stats	2020-03-12 03:51:20.870664+00
 
 
 --
--- Data for Name: device; Type: TABLE DATA; Schema: public; Owner: chirpstack_as
+-- Data for Name: device; Type: TABLE DATA; Schema: public; Owner: chirpstack
 --
 
 COPY public.device (dev_eui, created_at, updated_at, application_id, device_profile_id, name, description, last_seen_at, device_status_battery, device_status_margin, latitude, longitude, altitude, device_status_external_power_source, dr, variables, tags, dev_addr, app_s_key) FROM stdin;
@@ -813,7 +811,7 @@ COPY public.device (dev_eui, created_at, updated_at, application_id, device_prof
 
 
 --
--- Data for Name: device_keys; Type: TABLE DATA; Schema: public; Owner: chirpstack_as
+-- Data for Name: device_keys; Type: TABLE DATA; Schema: public; Owner: chirpstack
 --
 
 COPY public.device_keys (dev_eui, created_at, updated_at, nwk_key, join_nonce, app_key, gen_app_key) FROM stdin;
@@ -821,7 +819,7 @@ COPY public.device_keys (dev_eui, created_at, updated_at, nwk_key, join_nonce, a
 
 
 --
--- Data for Name: device_multicast_group; Type: TABLE DATA; Schema: public; Owner: chirpstack_as
+-- Data for Name: device_multicast_group; Type: TABLE DATA; Schema: public; Owner: chirpstack
 --
 
 COPY public.device_multicast_group (dev_eui, multicast_group_id, created_at) FROM stdin;
@@ -829,7 +827,7 @@ COPY public.device_multicast_group (dev_eui, multicast_group_id, created_at) FRO
 
 
 --
--- Data for Name: device_profile; Type: TABLE DATA; Schema: public; Owner: chirpstack_as
+-- Data for Name: device_profile; Type: TABLE DATA; Schema: public; Owner: chirpstack
 --
 
 COPY public.device_profile (device_profile_id, network_server_id, organization_id, created_at, updated_at, name, payload_codec, payload_encoder_script, payload_decoder_script, tags) FROM stdin;
@@ -839,7 +837,7 @@ d6741e98-4230-4d99-a760-244725679e45	1	1	2020-03-12 03:53:07.714166+00	2020-03-1
 
 
 --
--- Data for Name: fuota_deployment; Type: TABLE DATA; Schema: public; Owner: chirpstack_as
+-- Data for Name: fuota_deployment; Type: TABLE DATA; Schema: public; Owner: chirpstack
 --
 
 COPY public.fuota_deployment (id, created_at, updated_at, name, multicast_group_id, group_type, dr, frequency, ping_slot_period, fragmentation_matrix, descriptor, payload, frag_size, redundancy, multicast_timeout, block_ack_delay, state, unicast_timeout, next_step_after) FROM stdin;
@@ -847,7 +845,7 @@ COPY public.fuota_deployment (id, created_at, updated_at, name, multicast_group_
 
 
 --
--- Data for Name: fuota_deployment_device; Type: TABLE DATA; Schema: public; Owner: chirpstack_as
+-- Data for Name: fuota_deployment_device; Type: TABLE DATA; Schema: public; Owner: chirpstack
 --
 
 COPY public.fuota_deployment_device (fuota_deployment_id, dev_eui, created_at, updated_at, state, error_message) FROM stdin;
@@ -855,7 +853,7 @@ COPY public.fuota_deployment_device (fuota_deployment_id, dev_eui, created_at, u
 
 
 --
--- Data for Name: gateway; Type: TABLE DATA; Schema: public; Owner: chirpstack_as
+-- Data for Name: gateway; Type: TABLE DATA; Schema: public; Owner: chirpstack
 --
 
 COPY public.gateway (mac, created_at, updated_at, name, description, organization_id, ping, last_ping_id, last_ping_sent_at, network_server_id, gateway_profile_id, first_seen_at, last_seen_at, latitude, longitude, altitude, tags, metadata) FROM stdin;
@@ -864,7 +862,7 @@ COPY public.gateway (mac, created_at, updated_at, name, description, organizatio
 
 
 --
--- Data for Name: gateway_ping; Type: TABLE DATA; Schema: public; Owner: chirpstack_as
+-- Data for Name: gateway_ping; Type: TABLE DATA; Schema: public; Owner: chirpstack
 --
 
 COPY public.gateway_ping (id, created_at, gateway_mac, frequency, dr) FROM stdin;
@@ -872,7 +870,7 @@ COPY public.gateway_ping (id, created_at, gateway_mac, frequency, dr) FROM stdin
 
 
 --
--- Data for Name: gateway_ping_rx; Type: TABLE DATA; Schema: public; Owner: chirpstack_as
+-- Data for Name: gateway_ping_rx; Type: TABLE DATA; Schema: public; Owner: chirpstack
 --
 
 COPY public.gateway_ping_rx (id, created_at, ping_id, gateway_mac, received_at, rssi, lora_snr, location, altitude) FROM stdin;
@@ -880,7 +878,7 @@ COPY public.gateway_ping_rx (id, created_at, ping_id, gateway_mac, received_at, 
 
 
 --
--- Data for Name: gateway_profile; Type: TABLE DATA; Schema: public; Owner: chirpstack_as
+-- Data for Name: gateway_profile; Type: TABLE DATA; Schema: public; Owner: chirpstack
 --
 
 COPY public.gateway_profile (gateway_profile_id, network_server_id, created_at, updated_at, name) FROM stdin;
@@ -888,7 +886,7 @@ COPY public.gateway_profile (gateway_profile_id, network_server_id, created_at, 
 
 
 --
--- Data for Name: gorp_migrations; Type: TABLE DATA; Schema: public; Owner: chirpstack_as
+-- Data for Name: gorp_migrations; Type: TABLE DATA; Schema: public; Owner: chirpstack
 --
 
 COPY public.gorp_migrations (id, applied_at) FROM stdin;
@@ -946,7 +944,7 @@ COPY public.gorp_migrations (id, applied_at) FROM stdin;
 
 
 --
--- Data for Name: integration; Type: TABLE DATA; Schema: public; Owner: chirpstack_as
+-- Data for Name: integration; Type: TABLE DATA; Schema: public; Owner: chirpstack
 --
 
 COPY public.integration (id, created_at, updated_at, application_id, kind, settings) FROM stdin;
@@ -954,7 +952,7 @@ COPY public.integration (id, created_at, updated_at, application_id, kind, setti
 
 
 --
--- Data for Name: multicast_group; Type: TABLE DATA; Schema: public; Owner: chirpstack_as
+-- Data for Name: multicast_group; Type: TABLE DATA; Schema: public; Owner: chirpstack
 --
 
 COPY public.multicast_group (id, created_at, updated_at, name, service_profile_id, mc_app_s_key, mc_key) FROM stdin;
@@ -962,7 +960,7 @@ COPY public.multicast_group (id, created_at, updated_at, name, service_profile_i
 
 
 --
--- Data for Name: network_server; Type: TABLE DATA; Schema: public; Owner: chirpstack_as
+-- Data for Name: network_server; Type: TABLE DATA; Schema: public; Owner: chirpstack
 --
 
 COPY public.network_server (id, created_at, updated_at, name, server, ca_cert, tls_cert, tls_key, routing_profile_ca_cert, routing_profile_tls_cert, routing_profile_tls_key, gateway_discovery_enabled, gateway_discovery_interval, gateway_discovery_tx_frequency, gateway_discovery_dr) FROM stdin;
@@ -971,7 +969,7 @@ COPY public.network_server (id, created_at, updated_at, name, server, ca_cert, t
 
 
 --
--- Data for Name: organization; Type: TABLE DATA; Schema: public; Owner: chirpstack_as
+-- Data for Name: organization; Type: TABLE DATA; Schema: public; Owner: chirpstack
 --
 
 COPY public.organization (id, created_at, updated_at, name, display_name, can_have_gateways) FROM stdin;
@@ -980,7 +978,7 @@ COPY public.organization (id, created_at, updated_at, name, display_name, can_ha
 
 
 --
--- Data for Name: organization_user; Type: TABLE DATA; Schema: public; Owner: chirpstack_as
+-- Data for Name: organization_user; Type: TABLE DATA; Schema: public; Owner: chirpstack
 --
 
 COPY public.organization_user (id, created_at, updated_at, user_id, organization_id, is_admin, is_device_admin, is_gateway_admin) FROM stdin;
@@ -989,7 +987,7 @@ COPY public.organization_user (id, created_at, updated_at, user_id, organization
 
 
 --
--- Data for Name: remote_fragmentation_session; Type: TABLE DATA; Schema: public; Owner: chirpstack_as
+-- Data for Name: remote_fragmentation_session; Type: TABLE DATA; Schema: public; Owner: chirpstack
 --
 
 COPY public.remote_fragmentation_session (dev_eui, frag_index, created_at, updated_at, mc_group_ids, nb_frag, frag_size, fragmentation_matrix, block_ack_delay, padding, descriptor, state, state_provisioned, retry_after, retry_count, retry_interval) FROM stdin;
@@ -997,7 +995,7 @@ COPY public.remote_fragmentation_session (dev_eui, frag_index, created_at, updat
 
 
 --
--- Data for Name: remote_multicast_class_c_session; Type: TABLE DATA; Schema: public; Owner: chirpstack_as
+-- Data for Name: remote_multicast_class_c_session; Type: TABLE DATA; Schema: public; Owner: chirpstack
 --
 
 COPY public.remote_multicast_class_c_session (dev_eui, multicast_group_id, created_at, updated_at, mc_group_id, session_time, session_time_out, dl_frequency, dr, state_provisioned, retry_after, retry_count, retry_interval) FROM stdin;
@@ -1005,7 +1003,7 @@ COPY public.remote_multicast_class_c_session (dev_eui, multicast_group_id, creat
 
 
 --
--- Data for Name: remote_multicast_setup; Type: TABLE DATA; Schema: public; Owner: chirpstack_as
+-- Data for Name: remote_multicast_setup; Type: TABLE DATA; Schema: public; Owner: chirpstack
 --
 
 COPY public.remote_multicast_setup (dev_eui, multicast_group_id, created_at, updated_at, mc_group_id, mc_addr, mc_key_encrypted, min_mc_f_cnt, max_mc_f_cnt, state, state_provisioned, retry_after, retry_count, retry_interval) FROM stdin;
@@ -1013,7 +1011,7 @@ COPY public.remote_multicast_setup (dev_eui, multicast_group_id, created_at, upd
 
 
 --
--- Data for Name: service_profile; Type: TABLE DATA; Schema: public; Owner: chirpstack_as
+-- Data for Name: service_profile; Type: TABLE DATA; Schema: public; Owner: chirpstack
 --
 
 COPY public.service_profile (service_profile_id, organization_id, network_server_id, created_at, updated_at, name) FROM stdin;
@@ -1022,7 +1020,7 @@ a99e581e-1813-4eec-b011-afb5aca00563	1	1	2020-03-12 03:52:26.134453+00	2020-03-1
 
 
 --
--- Data for Name: user; Type: TABLE DATA; Schema: public; Owner: chirpstack_as
+-- Data for Name: user; Type: TABLE DATA; Schema: public; Owner: chirpstack
 --
 
 COPY public."user" (id, created_at, updated_at, username, password_hash, session_ttl, is_active, is_admin, email, note) FROM stdin;
@@ -1031,63 +1029,63 @@ COPY public."user" (id, created_at, updated_at, username, password_hash, session
 
 
 --
--- Name: application_id_seq; Type: SEQUENCE SET; Schema: public; Owner: chirpstack_as
+-- Name: application_id_seq; Type: SEQUENCE SET; Schema: public; Owner: chirpstack
 --
 
 SELECT pg_catalog.setval('public.application_id_seq', 1, true);
 
 
 --
--- Name: gateway_ping_id_seq; Type: SEQUENCE SET; Schema: public; Owner: chirpstack_as
+-- Name: gateway_ping_id_seq; Type: SEQUENCE SET; Schema: public; Owner: chirpstack
 --
 
 SELECT pg_catalog.setval('public.gateway_ping_id_seq', 1, false);
 
 
 --
--- Name: gateway_ping_rx_id_seq; Type: SEQUENCE SET; Schema: public; Owner: chirpstack_as
+-- Name: gateway_ping_rx_id_seq; Type: SEQUENCE SET; Schema: public; Owner: chirpstack
 --
 
 SELECT pg_catalog.setval('public.gateway_ping_rx_id_seq', 1, false);
 
 
 --
--- Name: integration_id_seq; Type: SEQUENCE SET; Schema: public; Owner: chirpstack_as
+-- Name: integration_id_seq; Type: SEQUENCE SET; Schema: public; Owner: chirpstack
 --
 
 SELECT pg_catalog.setval('public.integration_id_seq', 1, false);
 
 
 --
--- Name: network_server_id_seq; Type: SEQUENCE SET; Schema: public; Owner: chirpstack_as
+-- Name: network_server_id_seq; Type: SEQUENCE SET; Schema: public; Owner: chirpstack
 --
 
 SELECT pg_catalog.setval('public.network_server_id_seq', 1, true);
 
 
 --
--- Name: organization_id_seq; Type: SEQUENCE SET; Schema: public; Owner: chirpstack_as
+-- Name: organization_id_seq; Type: SEQUENCE SET; Schema: public; Owner: chirpstack
 --
 
 SELECT pg_catalog.setval('public.organization_id_seq', 1, true);
 
 
 --
--- Name: organization_user_id_seq; Type: SEQUENCE SET; Schema: public; Owner: chirpstack_as
+-- Name: organization_user_id_seq; Type: SEQUENCE SET; Schema: public; Owner: chirpstack
 --
 
 SELECT pg_catalog.setval('public.organization_user_id_seq', 1, true);
 
 
 --
--- Name: user_id_seq; Type: SEQUENCE SET; Schema: public; Owner: chirpstack_as
+-- Name: user_id_seq; Type: SEQUENCE SET; Schema: public; Owner: chirpstack
 --
 
 SELECT pg_catalog.setval('public.user_id_seq', 1, true);
 
 
 --
--- Name: application application_name_organization_id_key; Type: CONSTRAINT; Schema: public; Owner: chirpstack_as
+-- Name: application application_name_organization_id_key; Type: CONSTRAINT; Schema: public; Owner: chirpstack
 --
 
 ALTER TABLE ONLY public.application
@@ -1095,7 +1093,7 @@ ALTER TABLE ONLY public.application
 
 
 --
--- Name: application application_pkey; Type: CONSTRAINT; Schema: public; Owner: chirpstack_as
+-- Name: application application_pkey; Type: CONSTRAINT; Schema: public; Owner: chirpstack
 --
 
 ALTER TABLE ONLY public.application
@@ -1103,7 +1101,7 @@ ALTER TABLE ONLY public.application
 
 
 --
--- Name: code_migration code_migration_pkey; Type: CONSTRAINT; Schema: public; Owner: chirpstack_as
+-- Name: code_migration code_migration_pkey; Type: CONSTRAINT; Schema: public; Owner: chirpstack
 --
 
 ALTER TABLE ONLY public.code_migration
@@ -1111,7 +1109,7 @@ ALTER TABLE ONLY public.code_migration
 
 
 --
--- Name: device_keys device_keys_pkey; Type: CONSTRAINT; Schema: public; Owner: chirpstack_as
+-- Name: device_keys device_keys_pkey; Type: CONSTRAINT; Schema: public; Owner: chirpstack
 --
 
 ALTER TABLE ONLY public.device_keys
@@ -1119,7 +1117,7 @@ ALTER TABLE ONLY public.device_keys
 
 
 --
--- Name: device_multicast_group device_multicast_group_pkey; Type: CONSTRAINT; Schema: public; Owner: chirpstack_as
+-- Name: device_multicast_group device_multicast_group_pkey; Type: CONSTRAINT; Schema: public; Owner: chirpstack
 --
 
 ALTER TABLE ONLY public.device_multicast_group
@@ -1127,7 +1125,7 @@ ALTER TABLE ONLY public.device_multicast_group
 
 
 --
--- Name: device device_pkey; Type: CONSTRAINT; Schema: public; Owner: chirpstack_as
+-- Name: device device_pkey; Type: CONSTRAINT; Schema: public; Owner: chirpstack
 --
 
 ALTER TABLE ONLY public.device
@@ -1135,7 +1133,7 @@ ALTER TABLE ONLY public.device
 
 
 --
--- Name: device_profile device_profile_pkey; Type: CONSTRAINT; Schema: public; Owner: chirpstack_as
+-- Name: device_profile device_profile_pkey; Type: CONSTRAINT; Schema: public; Owner: chirpstack
 --
 
 ALTER TABLE ONLY public.device_profile
@@ -1143,7 +1141,7 @@ ALTER TABLE ONLY public.device_profile
 
 
 --
--- Name: fuota_deployment_device fuota_deployment_device_pkey; Type: CONSTRAINT; Schema: public; Owner: chirpstack_as
+-- Name: fuota_deployment_device fuota_deployment_device_pkey; Type: CONSTRAINT; Schema: public; Owner: chirpstack
 --
 
 ALTER TABLE ONLY public.fuota_deployment_device
@@ -1151,7 +1149,7 @@ ALTER TABLE ONLY public.fuota_deployment_device
 
 
 --
--- Name: fuota_deployment fuota_deployment_pkey; Type: CONSTRAINT; Schema: public; Owner: chirpstack_as
+-- Name: fuota_deployment fuota_deployment_pkey; Type: CONSTRAINT; Schema: public; Owner: chirpstack
 --
 
 ALTER TABLE ONLY public.fuota_deployment
@@ -1159,7 +1157,7 @@ ALTER TABLE ONLY public.fuota_deployment
 
 
 --
--- Name: gateway gateway_name_organization_id_key; Type: CONSTRAINT; Schema: public; Owner: chirpstack_as
+-- Name: gateway gateway_name_organization_id_key; Type: CONSTRAINT; Schema: public; Owner: chirpstack
 --
 
 ALTER TABLE ONLY public.gateway
@@ -1167,7 +1165,7 @@ ALTER TABLE ONLY public.gateway
 
 
 --
--- Name: gateway_ping gateway_ping_pkey; Type: CONSTRAINT; Schema: public; Owner: chirpstack_as
+-- Name: gateway_ping gateway_ping_pkey; Type: CONSTRAINT; Schema: public; Owner: chirpstack
 --
 
 ALTER TABLE ONLY public.gateway_ping
@@ -1175,7 +1173,7 @@ ALTER TABLE ONLY public.gateway_ping
 
 
 --
--- Name: gateway_ping_rx gateway_ping_rx_pkey; Type: CONSTRAINT; Schema: public; Owner: chirpstack_as
+-- Name: gateway_ping_rx gateway_ping_rx_pkey; Type: CONSTRAINT; Schema: public; Owner: chirpstack
 --
 
 ALTER TABLE ONLY public.gateway_ping_rx
@@ -1183,7 +1181,7 @@ ALTER TABLE ONLY public.gateway_ping_rx
 
 
 --
--- Name: gateway gateway_pkey; Type: CONSTRAINT; Schema: public; Owner: chirpstack_as
+-- Name: gateway gateway_pkey; Type: CONSTRAINT; Schema: public; Owner: chirpstack
 --
 
 ALTER TABLE ONLY public.gateway
@@ -1191,7 +1189,7 @@ ALTER TABLE ONLY public.gateway
 
 
 --
--- Name: gateway_profile gateway_profile_pkey; Type: CONSTRAINT; Schema: public; Owner: chirpstack_as
+-- Name: gateway_profile gateway_profile_pkey; Type: CONSTRAINT; Schema: public; Owner: chirpstack
 --
 
 ALTER TABLE ONLY public.gateway_profile
@@ -1199,7 +1197,7 @@ ALTER TABLE ONLY public.gateway_profile
 
 
 --
--- Name: gorp_migrations gorp_migrations_pkey; Type: CONSTRAINT; Schema: public; Owner: chirpstack_as
+-- Name: gorp_migrations gorp_migrations_pkey; Type: CONSTRAINT; Schema: public; Owner: chirpstack
 --
 
 ALTER TABLE ONLY public.gorp_migrations
@@ -1207,7 +1205,7 @@ ALTER TABLE ONLY public.gorp_migrations
 
 
 --
--- Name: integration integration_kind_application_id; Type: CONSTRAINT; Schema: public; Owner: chirpstack_as
+-- Name: integration integration_kind_application_id; Type: CONSTRAINT; Schema: public; Owner: chirpstack
 --
 
 ALTER TABLE ONLY public.integration
@@ -1215,7 +1213,7 @@ ALTER TABLE ONLY public.integration
 
 
 --
--- Name: integration integration_pkey; Type: CONSTRAINT; Schema: public; Owner: chirpstack_as
+-- Name: integration integration_pkey; Type: CONSTRAINT; Schema: public; Owner: chirpstack
 --
 
 ALTER TABLE ONLY public.integration
@@ -1223,7 +1221,7 @@ ALTER TABLE ONLY public.integration
 
 
 --
--- Name: multicast_group multicast_group_pkey; Type: CONSTRAINT; Schema: public; Owner: chirpstack_as
+-- Name: multicast_group multicast_group_pkey; Type: CONSTRAINT; Schema: public; Owner: chirpstack
 --
 
 ALTER TABLE ONLY public.multicast_group
@@ -1231,7 +1229,7 @@ ALTER TABLE ONLY public.multicast_group
 
 
 --
--- Name: network_server network_server_pkey; Type: CONSTRAINT; Schema: public; Owner: chirpstack_as
+-- Name: network_server network_server_pkey; Type: CONSTRAINT; Schema: public; Owner: chirpstack
 --
 
 ALTER TABLE ONLY public.network_server
@@ -1239,7 +1237,7 @@ ALTER TABLE ONLY public.network_server
 
 
 --
--- Name: organization organization_pkey; Type: CONSTRAINT; Schema: public; Owner: chirpstack_as
+-- Name: organization organization_pkey; Type: CONSTRAINT; Schema: public; Owner: chirpstack
 --
 
 ALTER TABLE ONLY public.organization
@@ -1247,7 +1245,7 @@ ALTER TABLE ONLY public.organization
 
 
 --
--- Name: organization_user organization_user_pkey; Type: CONSTRAINT; Schema: public; Owner: chirpstack_as
+-- Name: organization_user organization_user_pkey; Type: CONSTRAINT; Schema: public; Owner: chirpstack
 --
 
 ALTER TABLE ONLY public.organization_user
@@ -1255,7 +1253,7 @@ ALTER TABLE ONLY public.organization_user
 
 
 --
--- Name: organization_user organization_user_user_id_organization_id_key; Type: CONSTRAINT; Schema: public; Owner: chirpstack_as
+-- Name: organization_user organization_user_user_id_organization_id_key; Type: CONSTRAINT; Schema: public; Owner: chirpstack
 --
 
 ALTER TABLE ONLY public.organization_user
@@ -1263,7 +1261,7 @@ ALTER TABLE ONLY public.organization_user
 
 
 --
--- Name: remote_fragmentation_session remote_fragmentation_session_pkey; Type: CONSTRAINT; Schema: public; Owner: chirpstack_as
+-- Name: remote_fragmentation_session remote_fragmentation_session_pkey; Type: CONSTRAINT; Schema: public; Owner: chirpstack
 --
 
 ALTER TABLE ONLY public.remote_fragmentation_session
@@ -1271,7 +1269,7 @@ ALTER TABLE ONLY public.remote_fragmentation_session
 
 
 --
--- Name: remote_multicast_class_c_session remote_multicast_class_c_session_pkey; Type: CONSTRAINT; Schema: public; Owner: chirpstack_as
+-- Name: remote_multicast_class_c_session remote_multicast_class_c_session_pkey; Type: CONSTRAINT; Schema: public; Owner: chirpstack
 --
 
 ALTER TABLE ONLY public.remote_multicast_class_c_session
@@ -1279,7 +1277,7 @@ ALTER TABLE ONLY public.remote_multicast_class_c_session
 
 
 --
--- Name: remote_multicast_setup remote_multicast_setup_pkey; Type: CONSTRAINT; Schema: public; Owner: chirpstack_as
+-- Name: remote_multicast_setup remote_multicast_setup_pkey; Type: CONSTRAINT; Schema: public; Owner: chirpstack
 --
 
 ALTER TABLE ONLY public.remote_multicast_setup
@@ -1287,7 +1285,7 @@ ALTER TABLE ONLY public.remote_multicast_setup
 
 
 --
--- Name: service_profile service_profile_pkey; Type: CONSTRAINT; Schema: public; Owner: chirpstack_as
+-- Name: service_profile service_profile_pkey; Type: CONSTRAINT; Schema: public; Owner: chirpstack
 --
 
 ALTER TABLE ONLY public.service_profile
@@ -1295,7 +1293,7 @@ ALTER TABLE ONLY public.service_profile
 
 
 --
--- Name: user user_pkey; Type: CONSTRAINT; Schema: public; Owner: chirpstack_as
+-- Name: user user_pkey; Type: CONSTRAINT; Schema: public; Owner: chirpstack
 --
 
 ALTER TABLE ONLY public."user"
@@ -1303,329 +1301,329 @@ ALTER TABLE ONLY public."user"
 
 
 --
--- Name: idx_application_name_trgm; Type: INDEX; Schema: public; Owner: chirpstack_as
+-- Name: idx_application_name_trgm; Type: INDEX; Schema: public; Owner: chirpstack
 --
 
 CREATE INDEX idx_application_name_trgm ON public.application USING gin (name public.gin_trgm_ops);
 
 
 --
--- Name: idx_application_organization_id; Type: INDEX; Schema: public; Owner: chirpstack_as
+-- Name: idx_application_organization_id; Type: INDEX; Schema: public; Owner: chirpstack
 --
 
 CREATE INDEX idx_application_organization_id ON public.application USING btree (organization_id);
 
 
 --
--- Name: idx_application_service_profile_id; Type: INDEX; Schema: public; Owner: chirpstack_as
+-- Name: idx_application_service_profile_id; Type: INDEX; Schema: public; Owner: chirpstack
 --
 
 CREATE INDEX idx_application_service_profile_id ON public.application USING btree (service_profile_id);
 
 
 --
--- Name: idx_device_application_id; Type: INDEX; Schema: public; Owner: chirpstack_as
+-- Name: idx_device_application_id; Type: INDEX; Schema: public; Owner: chirpstack
 --
 
 CREATE INDEX idx_device_application_id ON public.device USING btree (application_id);
 
 
 --
--- Name: idx_device_dev_eui_trgm; Type: INDEX; Schema: public; Owner: chirpstack_as
+-- Name: idx_device_dev_eui_trgm; Type: INDEX; Schema: public; Owner: chirpstack
 --
 
 CREATE INDEX idx_device_dev_eui_trgm ON public.device USING gin (encode(dev_eui, 'hex'::text) public.gin_trgm_ops);
 
 
 --
--- Name: idx_device_device_profile_id; Type: INDEX; Schema: public; Owner: chirpstack_as
+-- Name: idx_device_device_profile_id; Type: INDEX; Schema: public; Owner: chirpstack
 --
 
 CREATE INDEX idx_device_device_profile_id ON public.device USING btree (device_profile_id);
 
 
 --
--- Name: idx_device_name_application_id; Type: INDEX; Schema: public; Owner: chirpstack_as
+-- Name: idx_device_name_application_id; Type: INDEX; Schema: public; Owner: chirpstack
 --
 
 CREATE UNIQUE INDEX idx_device_name_application_id ON public.device USING btree (name, application_id);
 
 
 --
--- Name: idx_device_name_trgm; Type: INDEX; Schema: public; Owner: chirpstack_as
+-- Name: idx_device_name_trgm; Type: INDEX; Schema: public; Owner: chirpstack
 --
 
 CREATE INDEX idx_device_name_trgm ON public.device USING gin (name public.gin_trgm_ops);
 
 
 --
--- Name: idx_device_profile_network_server_id; Type: INDEX; Schema: public; Owner: chirpstack_as
+-- Name: idx_device_profile_network_server_id; Type: INDEX; Schema: public; Owner: chirpstack
 --
 
 CREATE INDEX idx_device_profile_network_server_id ON public.device_profile USING btree (network_server_id);
 
 
 --
--- Name: idx_device_profile_organization_id; Type: INDEX; Schema: public; Owner: chirpstack_as
+-- Name: idx_device_profile_organization_id; Type: INDEX; Schema: public; Owner: chirpstack
 --
 
 CREATE INDEX idx_device_profile_organization_id ON public.device_profile USING btree (organization_id);
 
 
 --
--- Name: idx_device_profile_tags; Type: INDEX; Schema: public; Owner: chirpstack_as
+-- Name: idx_device_profile_tags; Type: INDEX; Schema: public; Owner: chirpstack
 --
 
 CREATE INDEX idx_device_profile_tags ON public.device_profile USING gin (tags);
 
 
 --
--- Name: idx_device_tags; Type: INDEX; Schema: public; Owner: chirpstack_as
+-- Name: idx_device_tags; Type: INDEX; Schema: public; Owner: chirpstack
 --
 
 CREATE INDEX idx_device_tags ON public.device USING gin (tags);
 
 
 --
--- Name: idx_fuota_deployment_multicast_group_id; Type: INDEX; Schema: public; Owner: chirpstack_as
+-- Name: idx_fuota_deployment_multicast_group_id; Type: INDEX; Schema: public; Owner: chirpstack
 --
 
 CREATE INDEX idx_fuota_deployment_multicast_group_id ON public.fuota_deployment USING btree (multicast_group_id);
 
 
 --
--- Name: idx_fuota_deployment_next_step_after; Type: INDEX; Schema: public; Owner: chirpstack_as
+-- Name: idx_fuota_deployment_next_step_after; Type: INDEX; Schema: public; Owner: chirpstack
 --
 
 CREATE INDEX idx_fuota_deployment_next_step_after ON public.fuota_deployment USING btree (next_step_after);
 
 
 --
--- Name: idx_fuota_deployment_state; Type: INDEX; Schema: public; Owner: chirpstack_as
+-- Name: idx_fuota_deployment_state; Type: INDEX; Schema: public; Owner: chirpstack
 --
 
 CREATE INDEX idx_fuota_deployment_state ON public.fuota_deployment USING btree (state);
 
 
 --
--- Name: idx_gateway_gateway_profile_id; Type: INDEX; Schema: public; Owner: chirpstack_as
+-- Name: idx_gateway_gateway_profile_id; Type: INDEX; Schema: public; Owner: chirpstack
 --
 
 CREATE INDEX idx_gateway_gateway_profile_id ON public.gateway USING btree (gateway_profile_id);
 
 
 --
--- Name: idx_gateway_last_ping_sent_at; Type: INDEX; Schema: public; Owner: chirpstack_as
+-- Name: idx_gateway_last_ping_sent_at; Type: INDEX; Schema: public; Owner: chirpstack
 --
 
 CREATE INDEX idx_gateway_last_ping_sent_at ON public.gateway USING btree (last_ping_sent_at);
 
 
 --
--- Name: idx_gateway_mac_trgm; Type: INDEX; Schema: public; Owner: chirpstack_as
+-- Name: idx_gateway_mac_trgm; Type: INDEX; Schema: public; Owner: chirpstack
 --
 
 CREATE INDEX idx_gateway_mac_trgm ON public.gateway USING gin (encode(mac, 'hex'::text) public.gin_trgm_ops);
 
 
 --
--- Name: idx_gateway_name_organization_id; Type: INDEX; Schema: public; Owner: chirpstack_as
+-- Name: idx_gateway_name_organization_id; Type: INDEX; Schema: public; Owner: chirpstack
 --
 
 CREATE UNIQUE INDEX idx_gateway_name_organization_id ON public.gateway USING btree (name, organization_id);
 
 
 --
--- Name: idx_gateway_name_trgm; Type: INDEX; Schema: public; Owner: chirpstack_as
+-- Name: idx_gateway_name_trgm; Type: INDEX; Schema: public; Owner: chirpstack
 --
 
 CREATE INDEX idx_gateway_name_trgm ON public.gateway USING gin (name public.gin_trgm_ops);
 
 
 --
--- Name: idx_gateway_network_server_id; Type: INDEX; Schema: public; Owner: chirpstack_as
+-- Name: idx_gateway_network_server_id; Type: INDEX; Schema: public; Owner: chirpstack
 --
 
 CREATE INDEX idx_gateway_network_server_id ON public.gateway USING btree (network_server_id);
 
 
 --
--- Name: idx_gateway_organization_id; Type: INDEX; Schema: public; Owner: chirpstack_as
+-- Name: idx_gateway_organization_id; Type: INDEX; Schema: public; Owner: chirpstack
 --
 
 CREATE INDEX idx_gateway_organization_id ON public.gateway USING btree (organization_id);
 
 
 --
--- Name: idx_gateway_ping; Type: INDEX; Schema: public; Owner: chirpstack_as
+-- Name: idx_gateway_ping; Type: INDEX; Schema: public; Owner: chirpstack
 --
 
 CREATE INDEX idx_gateway_ping ON public.gateway USING btree (ping);
 
 
 --
--- Name: idx_gateway_ping_gateway_mac; Type: INDEX; Schema: public; Owner: chirpstack_as
+-- Name: idx_gateway_ping_gateway_mac; Type: INDEX; Schema: public; Owner: chirpstack
 --
 
 CREATE INDEX idx_gateway_ping_gateway_mac ON public.gateway_ping USING btree (gateway_mac);
 
 
 --
--- Name: idx_gateway_ping_rx_gateway_mac; Type: INDEX; Schema: public; Owner: chirpstack_as
+-- Name: idx_gateway_ping_rx_gateway_mac; Type: INDEX; Schema: public; Owner: chirpstack
 --
 
 CREATE INDEX idx_gateway_ping_rx_gateway_mac ON public.gateway_ping_rx USING btree (gateway_mac);
 
 
 --
--- Name: idx_gateway_ping_rx_ping_id; Type: INDEX; Schema: public; Owner: chirpstack_as
+-- Name: idx_gateway_ping_rx_ping_id; Type: INDEX; Schema: public; Owner: chirpstack
 --
 
 CREATE INDEX idx_gateway_ping_rx_ping_id ON public.gateway_ping_rx USING btree (ping_id);
 
 
 --
--- Name: idx_gateway_profile_network_server_id; Type: INDEX; Schema: public; Owner: chirpstack_as
+-- Name: idx_gateway_profile_network_server_id; Type: INDEX; Schema: public; Owner: chirpstack
 --
 
 CREATE INDEX idx_gateway_profile_network_server_id ON public.gateway_profile USING btree (network_server_id);
 
 
 --
--- Name: idx_gateway_tags; Type: INDEX; Schema: public; Owner: chirpstack_as
+-- Name: idx_gateway_tags; Type: INDEX; Schema: public; Owner: chirpstack
 --
 
 CREATE INDEX idx_gateway_tags ON public.gateway USING gin (tags);
 
 
 --
--- Name: idx_integration_application_id; Type: INDEX; Schema: public; Owner: chirpstack_as
+-- Name: idx_integration_application_id; Type: INDEX; Schema: public; Owner: chirpstack
 --
 
 CREATE INDEX idx_integration_application_id ON public.integration USING btree (application_id);
 
 
 --
--- Name: idx_integration_kind; Type: INDEX; Schema: public; Owner: chirpstack_as
+-- Name: idx_integration_kind; Type: INDEX; Schema: public; Owner: chirpstack
 --
 
 CREATE INDEX idx_integration_kind ON public.integration USING btree (kind);
 
 
 --
--- Name: idx_multicast_group_name_trgm; Type: INDEX; Schema: public; Owner: chirpstack_as
+-- Name: idx_multicast_group_name_trgm; Type: INDEX; Schema: public; Owner: chirpstack
 --
 
 CREATE INDEX idx_multicast_group_name_trgm ON public.multicast_group USING gin (name public.gin_trgm_ops);
 
 
 --
--- Name: idx_multicast_group_service_profile_id; Type: INDEX; Schema: public; Owner: chirpstack_as
+-- Name: idx_multicast_group_service_profile_id; Type: INDEX; Schema: public; Owner: chirpstack
 --
 
 CREATE INDEX idx_multicast_group_service_profile_id ON public.multicast_group USING btree (service_profile_id);
 
 
 --
--- Name: idx_organization_name; Type: INDEX; Schema: public; Owner: chirpstack_as
+-- Name: idx_organization_name; Type: INDEX; Schema: public; Owner: chirpstack
 --
 
 CREATE UNIQUE INDEX idx_organization_name ON public.organization USING btree (name);
 
 
 --
--- Name: idx_organization_name_trgm; Type: INDEX; Schema: public; Owner: chirpstack_as
+-- Name: idx_organization_name_trgm; Type: INDEX; Schema: public; Owner: chirpstack
 --
 
 CREATE INDEX idx_organization_name_trgm ON public.organization USING gin (name public.gin_trgm_ops);
 
 
 --
--- Name: idx_organization_user_organization_id; Type: INDEX; Schema: public; Owner: chirpstack_as
+-- Name: idx_organization_user_organization_id; Type: INDEX; Schema: public; Owner: chirpstack
 --
 
 CREATE INDEX idx_organization_user_organization_id ON public.organization_user USING btree (organization_id);
 
 
 --
--- Name: idx_organization_user_user_id; Type: INDEX; Schema: public; Owner: chirpstack_as
+-- Name: idx_organization_user_user_id; Type: INDEX; Schema: public; Owner: chirpstack
 --
 
 CREATE INDEX idx_organization_user_user_id ON public.organization_user USING btree (user_id);
 
 
 --
--- Name: idx_remote_fragmentation_session_retry_after; Type: INDEX; Schema: public; Owner: chirpstack_as
+-- Name: idx_remote_fragmentation_session_retry_after; Type: INDEX; Schema: public; Owner: chirpstack
 --
 
 CREATE INDEX idx_remote_fragmentation_session_retry_after ON public.remote_fragmentation_session USING btree (retry_after);
 
 
 --
--- Name: idx_remote_fragmentation_session_state_provisioned; Type: INDEX; Schema: public; Owner: chirpstack_as
+-- Name: idx_remote_fragmentation_session_state_provisioned; Type: INDEX; Schema: public; Owner: chirpstack
 --
 
 CREATE INDEX idx_remote_fragmentation_session_state_provisioned ON public.remote_fragmentation_session USING btree (state_provisioned);
 
 
 --
--- Name: idx_remote_multicast_class_c_session_state_provisioned; Type: INDEX; Schema: public; Owner: chirpstack_as
+-- Name: idx_remote_multicast_class_c_session_state_provisioned; Type: INDEX; Schema: public; Owner: chirpstack
 --
 
 CREATE INDEX idx_remote_multicast_class_c_session_state_provisioned ON public.remote_multicast_class_c_session USING btree (state_provisioned);
 
 
 --
--- Name: idx_remote_multicast_class_c_session_state_retry_after; Type: INDEX; Schema: public; Owner: chirpstack_as
+-- Name: idx_remote_multicast_class_c_session_state_retry_after; Type: INDEX; Schema: public; Owner: chirpstack
 --
 
 CREATE INDEX idx_remote_multicast_class_c_session_state_retry_after ON public.remote_multicast_class_c_session USING btree (retry_after);
 
 
 --
--- Name: idx_remote_multicast_setup_retry_after; Type: INDEX; Schema: public; Owner: chirpstack_as
+-- Name: idx_remote_multicast_setup_retry_after; Type: INDEX; Schema: public; Owner: chirpstack
 --
 
 CREATE INDEX idx_remote_multicast_setup_retry_after ON public.remote_multicast_setup USING btree (retry_after);
 
 
 --
--- Name: idx_remote_multicast_setup_state_provisioned; Type: INDEX; Schema: public; Owner: chirpstack_as
+-- Name: idx_remote_multicast_setup_state_provisioned; Type: INDEX; Schema: public; Owner: chirpstack
 --
 
 CREATE INDEX idx_remote_multicast_setup_state_provisioned ON public.remote_multicast_setup USING btree (state_provisioned);
 
 
 --
--- Name: idx_service_profile_network_server_id; Type: INDEX; Schema: public; Owner: chirpstack_as
+-- Name: idx_service_profile_network_server_id; Type: INDEX; Schema: public; Owner: chirpstack
 --
 
 CREATE INDEX idx_service_profile_network_server_id ON public.service_profile USING btree (network_server_id);
 
 
 --
--- Name: idx_service_profile_organization_id; Type: INDEX; Schema: public; Owner: chirpstack_as
+-- Name: idx_service_profile_organization_id; Type: INDEX; Schema: public; Owner: chirpstack
 --
 
 CREATE INDEX idx_service_profile_organization_id ON public.service_profile USING btree (organization_id);
 
 
 --
--- Name: idx_user_username; Type: INDEX; Schema: public; Owner: chirpstack_as
+-- Name: idx_user_username; Type: INDEX; Schema: public; Owner: chirpstack
 --
 
 CREATE UNIQUE INDEX idx_user_username ON public."user" USING btree (username);
 
 
 --
--- Name: idx_user_username_trgm; Type: INDEX; Schema: public; Owner: chirpstack_as
+-- Name: idx_user_username_trgm; Type: INDEX; Schema: public; Owner: chirpstack
 --
 
 CREATE INDEX idx_user_username_trgm ON public."user" USING gin (username public.gin_trgm_ops);
 
 
 --
--- Name: application application_organization_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: chirpstack_as
+-- Name: application application_organization_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: chirpstack
 --
 
 ALTER TABLE ONLY public.application
@@ -1633,7 +1631,7 @@ ALTER TABLE ONLY public.application
 
 
 --
--- Name: application application_service_profile_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: chirpstack_as
+-- Name: application application_service_profile_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: chirpstack
 --
 
 ALTER TABLE ONLY public.application
@@ -1641,7 +1639,7 @@ ALTER TABLE ONLY public.application
 
 
 --
--- Name: device device_application_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: chirpstack_as
+-- Name: device device_application_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: chirpstack
 --
 
 ALTER TABLE ONLY public.device
@@ -1649,7 +1647,7 @@ ALTER TABLE ONLY public.device
 
 
 --
--- Name: device device_device_profile_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: chirpstack_as
+-- Name: device device_device_profile_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: chirpstack
 --
 
 ALTER TABLE ONLY public.device
@@ -1657,7 +1655,7 @@ ALTER TABLE ONLY public.device
 
 
 --
--- Name: device_keys device_keys_dev_eui_fkey; Type: FK CONSTRAINT; Schema: public; Owner: chirpstack_as
+-- Name: device_keys device_keys_dev_eui_fkey; Type: FK CONSTRAINT; Schema: public; Owner: chirpstack
 --
 
 ALTER TABLE ONLY public.device_keys
@@ -1665,7 +1663,7 @@ ALTER TABLE ONLY public.device_keys
 
 
 --
--- Name: device_multicast_group device_multicast_group_dev_eui_fkey; Type: FK CONSTRAINT; Schema: public; Owner: chirpstack_as
+-- Name: device_multicast_group device_multicast_group_dev_eui_fkey; Type: FK CONSTRAINT; Schema: public; Owner: chirpstack
 --
 
 ALTER TABLE ONLY public.device_multicast_group
@@ -1673,7 +1671,7 @@ ALTER TABLE ONLY public.device_multicast_group
 
 
 --
--- Name: device_multicast_group device_multicast_group_multicast_group_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: chirpstack_as
+-- Name: device_multicast_group device_multicast_group_multicast_group_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: chirpstack
 --
 
 ALTER TABLE ONLY public.device_multicast_group
@@ -1681,7 +1679,7 @@ ALTER TABLE ONLY public.device_multicast_group
 
 
 --
--- Name: device_profile device_profile_network_server_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: chirpstack_as
+-- Name: device_profile device_profile_network_server_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: chirpstack
 --
 
 ALTER TABLE ONLY public.device_profile
@@ -1689,7 +1687,7 @@ ALTER TABLE ONLY public.device_profile
 
 
 --
--- Name: device_profile device_profile_organization_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: chirpstack_as
+-- Name: device_profile device_profile_organization_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: chirpstack
 --
 
 ALTER TABLE ONLY public.device_profile
@@ -1697,7 +1695,7 @@ ALTER TABLE ONLY public.device_profile
 
 
 --
--- Name: fuota_deployment_device fuota_deployment_device_dev_eui_fkey; Type: FK CONSTRAINT; Schema: public; Owner: chirpstack_as
+-- Name: fuota_deployment_device fuota_deployment_device_dev_eui_fkey; Type: FK CONSTRAINT; Schema: public; Owner: chirpstack
 --
 
 ALTER TABLE ONLY public.fuota_deployment_device
@@ -1705,7 +1703,7 @@ ALTER TABLE ONLY public.fuota_deployment_device
 
 
 --
--- Name: fuota_deployment_device fuota_deployment_device_fuota_deployment_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: chirpstack_as
+-- Name: fuota_deployment_device fuota_deployment_device_fuota_deployment_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: chirpstack
 --
 
 ALTER TABLE ONLY public.fuota_deployment_device
@@ -1713,7 +1711,7 @@ ALTER TABLE ONLY public.fuota_deployment_device
 
 
 --
--- Name: fuota_deployment fuota_deployment_multicast_group_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: chirpstack_as
+-- Name: fuota_deployment fuota_deployment_multicast_group_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: chirpstack
 --
 
 ALTER TABLE ONLY public.fuota_deployment
@@ -1721,7 +1719,7 @@ ALTER TABLE ONLY public.fuota_deployment
 
 
 --
--- Name: gateway gateway_gateway_profile_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: chirpstack_as
+-- Name: gateway gateway_gateway_profile_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: chirpstack
 --
 
 ALTER TABLE ONLY public.gateway
@@ -1729,7 +1727,7 @@ ALTER TABLE ONLY public.gateway
 
 
 --
--- Name: gateway gateway_last_ping_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: chirpstack_as
+-- Name: gateway gateway_last_ping_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: chirpstack
 --
 
 ALTER TABLE ONLY public.gateway
@@ -1737,7 +1735,7 @@ ALTER TABLE ONLY public.gateway
 
 
 --
--- Name: gateway gateway_network_server_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: chirpstack_as
+-- Name: gateway gateway_network_server_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: chirpstack
 --
 
 ALTER TABLE ONLY public.gateway
@@ -1745,7 +1743,7 @@ ALTER TABLE ONLY public.gateway
 
 
 --
--- Name: gateway gateway_organization_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: chirpstack_as
+-- Name: gateway gateway_organization_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: chirpstack
 --
 
 ALTER TABLE ONLY public.gateway
@@ -1753,7 +1751,7 @@ ALTER TABLE ONLY public.gateway
 
 
 --
--- Name: gateway_ping gateway_ping_gateway_mac_fkey; Type: FK CONSTRAINT; Schema: public; Owner: chirpstack_as
+-- Name: gateway_ping gateway_ping_gateway_mac_fkey; Type: FK CONSTRAINT; Schema: public; Owner: chirpstack
 --
 
 ALTER TABLE ONLY public.gateway_ping
@@ -1761,7 +1759,7 @@ ALTER TABLE ONLY public.gateway_ping
 
 
 --
--- Name: gateway_ping_rx gateway_ping_rx_gateway_mac_fkey; Type: FK CONSTRAINT; Schema: public; Owner: chirpstack_as
+-- Name: gateway_ping_rx gateway_ping_rx_gateway_mac_fkey; Type: FK CONSTRAINT; Schema: public; Owner: chirpstack
 --
 
 ALTER TABLE ONLY public.gateway_ping_rx
@@ -1769,7 +1767,7 @@ ALTER TABLE ONLY public.gateway_ping_rx
 
 
 --
--- Name: gateway_ping_rx gateway_ping_rx_ping_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: chirpstack_as
+-- Name: gateway_ping_rx gateway_ping_rx_ping_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: chirpstack
 --
 
 ALTER TABLE ONLY public.gateway_ping_rx
@@ -1777,7 +1775,7 @@ ALTER TABLE ONLY public.gateway_ping_rx
 
 
 --
--- Name: gateway_profile gateway_profile_network_server_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: chirpstack_as
+-- Name: gateway_profile gateway_profile_network_server_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: chirpstack
 --
 
 ALTER TABLE ONLY public.gateway_profile
@@ -1785,7 +1783,7 @@ ALTER TABLE ONLY public.gateway_profile
 
 
 --
--- Name: integration integration_application_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: chirpstack_as
+-- Name: integration integration_application_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: chirpstack
 --
 
 ALTER TABLE ONLY public.integration
@@ -1793,7 +1791,7 @@ ALTER TABLE ONLY public.integration
 
 
 --
--- Name: multicast_group multicast_group_service_profile_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: chirpstack_as
+-- Name: multicast_group multicast_group_service_profile_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: chirpstack
 --
 
 ALTER TABLE ONLY public.multicast_group
@@ -1801,7 +1799,7 @@ ALTER TABLE ONLY public.multicast_group
 
 
 --
--- Name: organization_user organization_user_organization_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: chirpstack_as
+-- Name: organization_user organization_user_organization_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: chirpstack
 --
 
 ALTER TABLE ONLY public.organization_user
@@ -1809,7 +1807,7 @@ ALTER TABLE ONLY public.organization_user
 
 
 --
--- Name: organization_user organization_user_user_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: chirpstack_as
+-- Name: organization_user organization_user_user_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: chirpstack
 --
 
 ALTER TABLE ONLY public.organization_user
@@ -1817,7 +1815,7 @@ ALTER TABLE ONLY public.organization_user
 
 
 --
--- Name: remote_fragmentation_session remote_fragmentation_session_dev_eui_fkey; Type: FK CONSTRAINT; Schema: public; Owner: chirpstack_as
+-- Name: remote_fragmentation_session remote_fragmentation_session_dev_eui_fkey; Type: FK CONSTRAINT; Schema: public; Owner: chirpstack
 --
 
 ALTER TABLE ONLY public.remote_fragmentation_session
@@ -1825,7 +1823,7 @@ ALTER TABLE ONLY public.remote_fragmentation_session
 
 
 --
--- Name: remote_multicast_class_c_session remote_multicast_class_c_session_dev_eui_fkey; Type: FK CONSTRAINT; Schema: public; Owner: chirpstack_as
+-- Name: remote_multicast_class_c_session remote_multicast_class_c_session_dev_eui_fkey; Type: FK CONSTRAINT; Schema: public; Owner: chirpstack
 --
 
 ALTER TABLE ONLY public.remote_multicast_class_c_session
@@ -1833,7 +1831,7 @@ ALTER TABLE ONLY public.remote_multicast_class_c_session
 
 
 --
--- Name: remote_multicast_class_c_session remote_multicast_class_c_session_multicast_group_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: chirpstack_as
+-- Name: remote_multicast_class_c_session remote_multicast_class_c_session_multicast_group_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: chirpstack
 --
 
 ALTER TABLE ONLY public.remote_multicast_class_c_session
@@ -1841,7 +1839,7 @@ ALTER TABLE ONLY public.remote_multicast_class_c_session
 
 
 --
--- Name: remote_multicast_setup remote_multicast_setup_dev_eui_fkey; Type: FK CONSTRAINT; Schema: public; Owner: chirpstack_as
+-- Name: remote_multicast_setup remote_multicast_setup_dev_eui_fkey; Type: FK CONSTRAINT; Schema: public; Owner: chirpstack
 --
 
 ALTER TABLE ONLY public.remote_multicast_setup
@@ -1849,7 +1847,7 @@ ALTER TABLE ONLY public.remote_multicast_setup
 
 
 --
--- Name: remote_multicast_setup remote_multicast_setup_multicast_group_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: chirpstack_as
+-- Name: remote_multicast_setup remote_multicast_setup_multicast_group_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: chirpstack
 --
 
 ALTER TABLE ONLY public.remote_multicast_setup
@@ -1857,7 +1855,7 @@ ALTER TABLE ONLY public.remote_multicast_setup
 
 
 --
--- Name: service_profile service_profile_network_server_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: chirpstack_as
+-- Name: service_profile service_profile_network_server_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: chirpstack
 --
 
 ALTER TABLE ONLY public.service_profile
@@ -1865,7 +1863,7 @@ ALTER TABLE ONLY public.service_profile
 
 
 --
--- Name: service_profile service_profile_organization_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: chirpstack_as
+-- Name: service_profile service_profile_organization_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: chirpstack
 --
 
 ALTER TABLE ONLY public.service_profile
@@ -1895,15 +1893,15 @@ SET client_min_messages = warning;
 SET row_security = off;
 
 --
--- Name: chirpstack_ns; Type: DATABASE; Schema: -; Owner: chirpstack_ns
+-- Name: chirpstack; Type: DATABASE; Schema: -; Owner: chirpstack
 --
 
-CREATE DATABASE chirpstack_ns WITH TEMPLATE = template0 ENCODING = 'UTF8' LC_COLLATE = 'en_GB.UTF-8' LC_CTYPE = 'en_GB.UTF-8';
+CREATE DATABASE chirpstack WITH TEMPLATE = template0 ENCODING = 'UTF8' LC_COLLATE = 'en_GB.UTF-8' LC_CTYPE = 'en_GB.UTF-8';
 
 
-ALTER DATABASE chirpstack_ns OWNER TO chirpstack_ns;
+ALTER DATABASE chirpstack OWNER TO chirpstack;
 
-\connect chirpstack_ns
+\connect chirpstack
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -1921,7 +1919,7 @@ SET default_tablespace = '';
 SET default_with_oids = false;
 
 --
--- Name: code_migration; Type: TABLE; Schema: public; Owner: chirpstack_ns
+-- Name: code_migration; Type: TABLE; Schema: public; Owner: chirpstack
 --
 
 CREATE TABLE public.code_migration (
@@ -1930,10 +1928,10 @@ CREATE TABLE public.code_migration (
 );
 
 
-ALTER TABLE public.code_migration OWNER TO chirpstack_ns;
+ALTER TABLE public.code_migration OWNER TO chirpstack;
 
 --
--- Name: device; Type: TABLE; Schema: public; Owner: chirpstack_ns
+-- Name: device; Type: TABLE; Schema: public; Owner: chirpstack
 --
 
 CREATE TABLE public.device (
@@ -1949,10 +1947,10 @@ CREATE TABLE public.device (
 );
 
 
-ALTER TABLE public.device OWNER TO chirpstack_ns;
+ALTER TABLE public.device OWNER TO chirpstack;
 
 --
--- Name: device_activation; Type: TABLE; Schema: public; Owner: chirpstack_ns
+-- Name: device_activation; Type: TABLE; Schema: public; Owner: chirpstack
 --
 
 CREATE TABLE public.device_activation (
@@ -1969,10 +1967,10 @@ CREATE TABLE public.device_activation (
 );
 
 
-ALTER TABLE public.device_activation OWNER TO chirpstack_ns;
+ALTER TABLE public.device_activation OWNER TO chirpstack;
 
 --
--- Name: device_activation_id_seq; Type: SEQUENCE; Schema: public; Owner: chirpstack_ns
+-- Name: device_activation_id_seq; Type: SEQUENCE; Schema: public; Owner: chirpstack
 --
 
 CREATE SEQUENCE public.device_activation_id_seq
@@ -1983,17 +1981,17 @@ CREATE SEQUENCE public.device_activation_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.device_activation_id_seq OWNER TO chirpstack_ns;
+ALTER TABLE public.device_activation_id_seq OWNER TO chirpstack;
 
 --
--- Name: device_activation_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: chirpstack_ns
+-- Name: device_activation_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: chirpstack
 --
 
 ALTER SEQUENCE public.device_activation_id_seq OWNED BY public.device_activation.id;
 
 
 --
--- Name: device_multicast_group; Type: TABLE; Schema: public; Owner: chirpstack_ns
+-- Name: device_multicast_group; Type: TABLE; Schema: public; Owner: chirpstack
 --
 
 CREATE TABLE public.device_multicast_group (
@@ -2003,10 +2001,10 @@ CREATE TABLE public.device_multicast_group (
 );
 
 
-ALTER TABLE public.device_multicast_group OWNER TO chirpstack_ns;
+ALTER TABLE public.device_multicast_group OWNER TO chirpstack;
 
 --
--- Name: device_profile; Type: TABLE; Schema: public; Owner: chirpstack_ns
+-- Name: device_profile; Type: TABLE; Schema: public; Owner: chirpstack
 --
 
 CREATE TABLE public.device_profile (
@@ -2037,10 +2035,10 @@ CREATE TABLE public.device_profile (
 );
 
 
-ALTER TABLE public.device_profile OWNER TO chirpstack_ns;
+ALTER TABLE public.device_profile OWNER TO chirpstack;
 
 --
--- Name: device_queue; Type: TABLE; Schema: public; Owner: chirpstack_ns
+-- Name: device_queue; Type: TABLE; Schema: public; Owner: chirpstack
 --
 
 CREATE TABLE public.device_queue (
@@ -2059,10 +2057,10 @@ CREATE TABLE public.device_queue (
 );
 
 
-ALTER TABLE public.device_queue OWNER TO chirpstack_ns;
+ALTER TABLE public.device_queue OWNER TO chirpstack;
 
 --
--- Name: device_queue_id_seq; Type: SEQUENCE; Schema: public; Owner: chirpstack_ns
+-- Name: device_queue_id_seq; Type: SEQUENCE; Schema: public; Owner: chirpstack
 --
 
 CREATE SEQUENCE public.device_queue_id_seq
@@ -2073,17 +2071,17 @@ CREATE SEQUENCE public.device_queue_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.device_queue_id_seq OWNER TO chirpstack_ns;
+ALTER TABLE public.device_queue_id_seq OWNER TO chirpstack;
 
 --
--- Name: device_queue_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: chirpstack_ns
+-- Name: device_queue_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: chirpstack
 --
 
 ALTER SEQUENCE public.device_queue_id_seq OWNED BY public.device_queue.id;
 
 
 --
--- Name: gateway; Type: TABLE; Schema: public; Owner: chirpstack_ns
+-- Name: gateway; Type: TABLE; Schema: public; Owner: chirpstack
 --
 
 CREATE TABLE public.gateway (
@@ -2099,10 +2097,10 @@ CREATE TABLE public.gateway (
 );
 
 
-ALTER TABLE public.gateway OWNER TO chirpstack_ns;
+ALTER TABLE public.gateway OWNER TO chirpstack;
 
 --
--- Name: gateway_board; Type: TABLE; Schema: public; Owner: chirpstack_ns
+-- Name: gateway_board; Type: TABLE; Schema: public; Owner: chirpstack
 --
 
 CREATE TABLE public.gateway_board (
@@ -2113,10 +2111,10 @@ CREATE TABLE public.gateway_board (
 );
 
 
-ALTER TABLE public.gateway_board OWNER TO chirpstack_ns;
+ALTER TABLE public.gateway_board OWNER TO chirpstack;
 
 --
--- Name: gateway_profile; Type: TABLE; Schema: public; Owner: chirpstack_ns
+-- Name: gateway_profile; Type: TABLE; Schema: public; Owner: chirpstack
 --
 
 CREATE TABLE public.gateway_profile (
@@ -2127,10 +2125,10 @@ CREATE TABLE public.gateway_profile (
 );
 
 
-ALTER TABLE public.gateway_profile OWNER TO chirpstack_ns;
+ALTER TABLE public.gateway_profile OWNER TO chirpstack;
 
 --
--- Name: gateway_profile_extra_channel; Type: TABLE; Schema: public; Owner: chirpstack_ns
+-- Name: gateway_profile_extra_channel; Type: TABLE; Schema: public; Owner: chirpstack
 --
 
 CREATE TABLE public.gateway_profile_extra_channel (
@@ -2144,10 +2142,10 @@ CREATE TABLE public.gateway_profile_extra_channel (
 );
 
 
-ALTER TABLE public.gateway_profile_extra_channel OWNER TO chirpstack_ns;
+ALTER TABLE public.gateway_profile_extra_channel OWNER TO chirpstack;
 
 --
--- Name: gateway_profile_extra_channel_id_seq; Type: SEQUENCE; Schema: public; Owner: chirpstack_ns
+-- Name: gateway_profile_extra_channel_id_seq; Type: SEQUENCE; Schema: public; Owner: chirpstack
 --
 
 CREATE SEQUENCE public.gateway_profile_extra_channel_id_seq
@@ -2158,17 +2156,17 @@ CREATE SEQUENCE public.gateway_profile_extra_channel_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.gateway_profile_extra_channel_id_seq OWNER TO chirpstack_ns;
+ALTER TABLE public.gateway_profile_extra_channel_id_seq OWNER TO chirpstack;
 
 --
--- Name: gateway_profile_extra_channel_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: chirpstack_ns
+-- Name: gateway_profile_extra_channel_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: chirpstack
 --
 
 ALTER SEQUENCE public.gateway_profile_extra_channel_id_seq OWNED BY public.gateway_profile_extra_channel.id;
 
 
 --
--- Name: gorp_migrations; Type: TABLE; Schema: public; Owner: chirpstack_ns
+-- Name: gorp_migrations; Type: TABLE; Schema: public; Owner: chirpstack
 --
 
 CREATE TABLE public.gorp_migrations (
@@ -2177,10 +2175,10 @@ CREATE TABLE public.gorp_migrations (
 );
 
 
-ALTER TABLE public.gorp_migrations OWNER TO chirpstack_ns;
+ALTER TABLE public.gorp_migrations OWNER TO chirpstack;
 
 --
--- Name: multicast_group; Type: TABLE; Schema: public; Owner: chirpstack_ns
+-- Name: multicast_group; Type: TABLE; Schema: public; Owner: chirpstack
 --
 
 CREATE TABLE public.multicast_group (
@@ -2199,10 +2197,10 @@ CREATE TABLE public.multicast_group (
 );
 
 
-ALTER TABLE public.multicast_group OWNER TO chirpstack_ns;
+ALTER TABLE public.multicast_group OWNER TO chirpstack;
 
 --
--- Name: multicast_queue; Type: TABLE; Schema: public; Owner: chirpstack_ns
+-- Name: multicast_queue; Type: TABLE; Schema: public; Owner: chirpstack
 --
 
 CREATE TABLE public.multicast_queue (
@@ -2218,10 +2216,10 @@ CREATE TABLE public.multicast_queue (
 );
 
 
-ALTER TABLE public.multicast_queue OWNER TO chirpstack_ns;
+ALTER TABLE public.multicast_queue OWNER TO chirpstack;
 
 --
--- Name: multicast_queue_id_seq; Type: SEQUENCE; Schema: public; Owner: chirpstack_ns
+-- Name: multicast_queue_id_seq; Type: SEQUENCE; Schema: public; Owner: chirpstack
 --
 
 CREATE SEQUENCE public.multicast_queue_id_seq
@@ -2232,17 +2230,17 @@ CREATE SEQUENCE public.multicast_queue_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.multicast_queue_id_seq OWNER TO chirpstack_ns;
+ALTER TABLE public.multicast_queue_id_seq OWNER TO chirpstack;
 
 --
--- Name: multicast_queue_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: chirpstack_ns
+-- Name: multicast_queue_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: chirpstack
 --
 
 ALTER SEQUENCE public.multicast_queue_id_seq OWNED BY public.multicast_queue.id;
 
 
 --
--- Name: routing_profile; Type: TABLE; Schema: public; Owner: chirpstack_ns
+-- Name: routing_profile; Type: TABLE; Schema: public; Owner: chirpstack
 --
 
 CREATE TABLE public.routing_profile (
@@ -2256,10 +2254,10 @@ CREATE TABLE public.routing_profile (
 );
 
 
-ALTER TABLE public.routing_profile OWNER TO chirpstack_ns;
+ALTER TABLE public.routing_profile OWNER TO chirpstack;
 
 --
--- Name: service_profile; Type: TABLE; Schema: public; Owner: chirpstack_ns
+-- Name: service_profile; Type: TABLE; Schema: public; Owner: chirpstack
 --
 
 CREATE TABLE public.service_profile (
@@ -2288,38 +2286,38 @@ CREATE TABLE public.service_profile (
 );
 
 
-ALTER TABLE public.service_profile OWNER TO chirpstack_ns;
+ALTER TABLE public.service_profile OWNER TO chirpstack;
 
 --
--- Name: device_activation id; Type: DEFAULT; Schema: public; Owner: chirpstack_ns
+-- Name: device_activation id; Type: DEFAULT; Schema: public; Owner: chirpstack
 --
 
 ALTER TABLE ONLY public.device_activation ALTER COLUMN id SET DEFAULT nextval('public.device_activation_id_seq'::regclass);
 
 
 --
--- Name: device_queue id; Type: DEFAULT; Schema: public; Owner: chirpstack_ns
+-- Name: device_queue id; Type: DEFAULT; Schema: public; Owner: chirpstack
 --
 
 ALTER TABLE ONLY public.device_queue ALTER COLUMN id SET DEFAULT nextval('public.device_queue_id_seq'::regclass);
 
 
 --
--- Name: gateway_profile_extra_channel id; Type: DEFAULT; Schema: public; Owner: chirpstack_ns
+-- Name: gateway_profile_extra_channel id; Type: DEFAULT; Schema: public; Owner: chirpstack
 --
 
 ALTER TABLE ONLY public.gateway_profile_extra_channel ALTER COLUMN id SET DEFAULT nextval('public.gateway_profile_extra_channel_id_seq'::regclass);
 
 
 --
--- Name: multicast_queue id; Type: DEFAULT; Schema: public; Owner: chirpstack_ns
+-- Name: multicast_queue id; Type: DEFAULT; Schema: public; Owner: chirpstack
 --
 
 ALTER TABLE ONLY public.multicast_queue ALTER COLUMN id SET DEFAULT nextval('public.multicast_queue_id_seq'::regclass);
 
 
 --
--- Data for Name: code_migration; Type: TABLE DATA; Schema: public; Owner: chirpstack_ns
+-- Data for Name: code_migration; Type: TABLE DATA; Schema: public; Owner: chirpstack
 --
 
 COPY public.code_migration (id, applied_at) FROM stdin;
@@ -2329,7 +2327,7 @@ stats_migration_flush_gw_cache	2020-03-12 03:51:18.818715+00
 
 
 --
--- Data for Name: device; Type: TABLE DATA; Schema: public; Owner: chirpstack_ns
+-- Data for Name: device; Type: TABLE DATA; Schema: public; Owner: chirpstack
 --
 
 COPY public.device (dev_eui, created_at, updated_at, device_profile_id, service_profile_id, routing_profile_id, skip_fcnt_check, reference_altitude, mode) FROM stdin;
@@ -2337,7 +2335,7 @@ COPY public.device (dev_eui, created_at, updated_at, device_profile_id, service_
 
 
 --
--- Data for Name: device_activation; Type: TABLE DATA; Schema: public; Owner: chirpstack_ns
+-- Data for Name: device_activation; Type: TABLE DATA; Schema: public; Owner: chirpstack
 --
 
 COPY public.device_activation (id, created_at, dev_eui, join_eui, dev_addr, f_nwk_s_int_key, s_nwk_s_int_key, nwk_s_enc_key, dev_nonce, join_req_type) FROM stdin;
@@ -2345,7 +2343,7 @@ COPY public.device_activation (id, created_at, dev_eui, join_eui, dev_addr, f_nw
 
 
 --
--- Data for Name: device_multicast_group; Type: TABLE DATA; Schema: public; Owner: chirpstack_ns
+-- Data for Name: device_multicast_group; Type: TABLE DATA; Schema: public; Owner: chirpstack
 --
 
 COPY public.device_multicast_group (dev_eui, multicast_group_id, created_at) FROM stdin;
@@ -2353,7 +2351,7 @@ COPY public.device_multicast_group (dev_eui, multicast_group_id, created_at) FRO
 
 
 --
--- Data for Name: device_profile; Type: TABLE DATA; Schema: public; Owner: chirpstack_ns
+-- Data for Name: device_profile; Type: TABLE DATA; Schema: public; Owner: chirpstack
 --
 
 COPY public.device_profile (created_at, updated_at, device_profile_id, supports_class_b, class_b_timeout, ping_slot_period, ping_slot_dr, ping_slot_freq, supports_class_c, class_c_timeout, mac_version, reg_params_revision, rx_delay_1, rx_dr_offset_1, rx_data_rate_2, rx_freq_2, factory_preset_freqs, max_eirp, max_duty_cycle, supports_join, rf_region, supports_32bit_fcnt, geoloc_buffer_ttl, geoloc_min_buffer_size) FROM stdin;
@@ -2363,7 +2361,7 @@ COPY public.device_profile (created_at, updated_at, device_profile_id, supports_
 
 
 --
--- Data for Name: device_queue; Type: TABLE DATA; Schema: public; Owner: chirpstack_ns
+-- Data for Name: device_queue; Type: TABLE DATA; Schema: public; Owner: chirpstack
 --
 
 COPY public.device_queue (id, created_at, updated_at, dev_eui, frm_payload, f_cnt, f_port, confirmed, is_pending, timeout_after, emit_at_time_since_gps_epoch, dev_addr) FROM stdin;
@@ -2371,7 +2369,7 @@ COPY public.device_queue (id, created_at, updated_at, dev_eui, frm_payload, f_cn
 
 
 --
--- Data for Name: gateway; Type: TABLE DATA; Schema: public; Owner: chirpstack_ns
+-- Data for Name: gateway; Type: TABLE DATA; Schema: public; Owner: chirpstack
 --
 
 COPY public.gateway (gateway_id, created_at, updated_at, first_seen_at, last_seen_at, location, altitude, gateway_profile_id, routing_profile_id) FROM stdin;
@@ -2380,7 +2378,7 @@ COPY public.gateway (gateway_id, created_at, updated_at, first_seen_at, last_see
 
 
 --
--- Data for Name: gateway_board; Type: TABLE DATA; Schema: public; Owner: chirpstack_ns
+-- Data for Name: gateway_board; Type: TABLE DATA; Schema: public; Owner: chirpstack
 --
 
 COPY public.gateway_board (id, gateway_id, fpga_id, fine_timestamp_key) FROM stdin;
@@ -2388,7 +2386,7 @@ COPY public.gateway_board (id, gateway_id, fpga_id, fine_timestamp_key) FROM std
 
 
 --
--- Data for Name: gateway_profile; Type: TABLE DATA; Schema: public; Owner: chirpstack_ns
+-- Data for Name: gateway_profile; Type: TABLE DATA; Schema: public; Owner: chirpstack
 --
 
 COPY public.gateway_profile (gateway_profile_id, created_at, updated_at, channels) FROM stdin;
@@ -2396,7 +2394,7 @@ COPY public.gateway_profile (gateway_profile_id, created_at, updated_at, channel
 
 
 --
--- Data for Name: gateway_profile_extra_channel; Type: TABLE DATA; Schema: public; Owner: chirpstack_ns
+-- Data for Name: gateway_profile_extra_channel; Type: TABLE DATA; Schema: public; Owner: chirpstack
 --
 
 COPY public.gateway_profile_extra_channel (id, gateway_profile_id, modulation, frequency, bandwidth, bitrate, spreading_factors) FROM stdin;
@@ -2404,7 +2402,7 @@ COPY public.gateway_profile_extra_channel (id, gateway_profile_id, modulation, f
 
 
 --
--- Data for Name: gorp_migrations; Type: TABLE DATA; Schema: public; Owner: chirpstack_ns
+-- Data for Name: gorp_migrations; Type: TABLE DATA; Schema: public; Owner: chirpstack
 --
 
 COPY public.gorp_migrations (id, applied_at) FROM stdin;
@@ -2437,7 +2435,7 @@ COPY public.gorp_migrations (id, applied_at) FROM stdin;
 
 
 --
--- Data for Name: multicast_group; Type: TABLE DATA; Schema: public; Owner: chirpstack_ns
+-- Data for Name: multicast_group; Type: TABLE DATA; Schema: public; Owner: chirpstack
 --
 
 COPY public.multicast_group (id, created_at, updated_at, mc_addr, mc_nwk_s_key, f_cnt, group_type, dr, frequency, ping_slot_period, routing_profile_id, service_profile_id) FROM stdin;
@@ -2445,7 +2443,7 @@ COPY public.multicast_group (id, created_at, updated_at, mc_addr, mc_nwk_s_key, 
 
 
 --
--- Data for Name: multicast_queue; Type: TABLE DATA; Schema: public; Owner: chirpstack_ns
+-- Data for Name: multicast_queue; Type: TABLE DATA; Schema: public; Owner: chirpstack
 --
 
 COPY public.multicast_queue (id, created_at, schedule_at, emit_at_time_since_gps_epoch, multicast_group_id, gateway_id, f_cnt, f_port, frm_payload) FROM stdin;
@@ -2453,7 +2451,7 @@ COPY public.multicast_queue (id, created_at, schedule_at, emit_at_time_since_gps
 
 
 --
--- Data for Name: routing_profile; Type: TABLE DATA; Schema: public; Owner: chirpstack_ns
+-- Data for Name: routing_profile; Type: TABLE DATA; Schema: public; Owner: chirpstack
 --
 
 COPY public.routing_profile (created_at, updated_at, routing_profile_id, as_id, ca_cert, tls_cert, tls_key) FROM stdin;
@@ -2462,7 +2460,7 @@ COPY public.routing_profile (created_at, updated_at, routing_profile_id, as_id, 
 
 
 --
--- Data for Name: service_profile; Type: TABLE DATA; Schema: public; Owner: chirpstack_ns
+-- Data for Name: service_profile; Type: TABLE DATA; Schema: public; Owner: chirpstack
 --
 
 COPY public.service_profile (created_at, updated_at, service_profile_id, ul_rate, ul_bucket_size, ul_rate_policy, dl_rate, dl_bucket_size, dl_rate_policy, add_gw_metadata, dev_status_req_freq, report_dev_status_battery, report_dev_status_margin, dr_min, dr_max, channel_mask, pr_allowed, hr_allowed, ra_allowed, nwk_geo_loc, target_per, min_gw_diversity) FROM stdin;
@@ -2471,35 +2469,35 @@ COPY public.service_profile (created_at, updated_at, service_profile_id, ul_rate
 
 
 --
--- Name: device_activation_id_seq; Type: SEQUENCE SET; Schema: public; Owner: chirpstack_ns
+-- Name: device_activation_id_seq; Type: SEQUENCE SET; Schema: public; Owner: chirpstack
 --
 
 SELECT pg_catalog.setval('public.device_activation_id_seq', 1, false);
 
 
 --
--- Name: device_queue_id_seq; Type: SEQUENCE SET; Schema: public; Owner: chirpstack_ns
+-- Name: device_queue_id_seq; Type: SEQUENCE SET; Schema: public; Owner: chirpstack
 --
 
 SELECT pg_catalog.setval('public.device_queue_id_seq', 1, false);
 
 
 --
--- Name: gateway_profile_extra_channel_id_seq; Type: SEQUENCE SET; Schema: public; Owner: chirpstack_ns
+-- Name: gateway_profile_extra_channel_id_seq; Type: SEQUENCE SET; Schema: public; Owner: chirpstack
 --
 
 SELECT pg_catalog.setval('public.gateway_profile_extra_channel_id_seq', 1, false);
 
 
 --
--- Name: multicast_queue_id_seq; Type: SEQUENCE SET; Schema: public; Owner: chirpstack_ns
+-- Name: multicast_queue_id_seq; Type: SEQUENCE SET; Schema: public; Owner: chirpstack
 --
 
 SELECT pg_catalog.setval('public.multicast_queue_id_seq', 1, false);
 
 
 --
--- Name: code_migration code_migration_pkey; Type: CONSTRAINT; Schema: public; Owner: chirpstack_ns
+-- Name: code_migration code_migration_pkey; Type: CONSTRAINT; Schema: public; Owner: chirpstack
 --
 
 ALTER TABLE ONLY public.code_migration
@@ -2507,7 +2505,7 @@ ALTER TABLE ONLY public.code_migration
 
 
 --
--- Name: device_activation device_activation_pkey; Type: CONSTRAINT; Schema: public; Owner: chirpstack_ns
+-- Name: device_activation device_activation_pkey; Type: CONSTRAINT; Schema: public; Owner: chirpstack
 --
 
 ALTER TABLE ONLY public.device_activation
@@ -2515,7 +2513,7 @@ ALTER TABLE ONLY public.device_activation
 
 
 --
--- Name: device_multicast_group device_multicast_group_pkey; Type: CONSTRAINT; Schema: public; Owner: chirpstack_ns
+-- Name: device_multicast_group device_multicast_group_pkey; Type: CONSTRAINT; Schema: public; Owner: chirpstack
 --
 
 ALTER TABLE ONLY public.device_multicast_group
@@ -2523,7 +2521,7 @@ ALTER TABLE ONLY public.device_multicast_group
 
 
 --
--- Name: device device_pkey; Type: CONSTRAINT; Schema: public; Owner: chirpstack_ns
+-- Name: device device_pkey; Type: CONSTRAINT; Schema: public; Owner: chirpstack
 --
 
 ALTER TABLE ONLY public.device
@@ -2531,7 +2529,7 @@ ALTER TABLE ONLY public.device
 
 
 --
--- Name: device_profile device_profile_pkey; Type: CONSTRAINT; Schema: public; Owner: chirpstack_ns
+-- Name: device_profile device_profile_pkey; Type: CONSTRAINT; Schema: public; Owner: chirpstack
 --
 
 ALTER TABLE ONLY public.device_profile
@@ -2539,7 +2537,7 @@ ALTER TABLE ONLY public.device_profile
 
 
 --
--- Name: device_queue device_queue_pkey; Type: CONSTRAINT; Schema: public; Owner: chirpstack_ns
+-- Name: device_queue device_queue_pkey; Type: CONSTRAINT; Schema: public; Owner: chirpstack
 --
 
 ALTER TABLE ONLY public.device_queue
@@ -2547,7 +2545,7 @@ ALTER TABLE ONLY public.device_queue
 
 
 --
--- Name: gateway_board gateway_board_pkey; Type: CONSTRAINT; Schema: public; Owner: chirpstack_ns
+-- Name: gateway_board gateway_board_pkey; Type: CONSTRAINT; Schema: public; Owner: chirpstack
 --
 
 ALTER TABLE ONLY public.gateway_board
@@ -2555,7 +2553,7 @@ ALTER TABLE ONLY public.gateway_board
 
 
 --
--- Name: gateway gateway_pkey; Type: CONSTRAINT; Schema: public; Owner: chirpstack_ns
+-- Name: gateway gateway_pkey; Type: CONSTRAINT; Schema: public; Owner: chirpstack
 --
 
 ALTER TABLE ONLY public.gateway
@@ -2563,7 +2561,7 @@ ALTER TABLE ONLY public.gateway
 
 
 --
--- Name: gateway_profile_extra_channel gateway_profile_extra_channel_pkey; Type: CONSTRAINT; Schema: public; Owner: chirpstack_ns
+-- Name: gateway_profile_extra_channel gateway_profile_extra_channel_pkey; Type: CONSTRAINT; Schema: public; Owner: chirpstack
 --
 
 ALTER TABLE ONLY public.gateway_profile_extra_channel
@@ -2571,7 +2569,7 @@ ALTER TABLE ONLY public.gateway_profile_extra_channel
 
 
 --
--- Name: gateway_profile gateway_profile_pkey; Type: CONSTRAINT; Schema: public; Owner: chirpstack_ns
+-- Name: gateway_profile gateway_profile_pkey; Type: CONSTRAINT; Schema: public; Owner: chirpstack
 --
 
 ALTER TABLE ONLY public.gateway_profile
@@ -2579,7 +2577,7 @@ ALTER TABLE ONLY public.gateway_profile
 
 
 --
--- Name: gorp_migrations gorp_migrations_pkey; Type: CONSTRAINT; Schema: public; Owner: chirpstack_ns
+-- Name: gorp_migrations gorp_migrations_pkey; Type: CONSTRAINT; Schema: public; Owner: chirpstack
 --
 
 ALTER TABLE ONLY public.gorp_migrations
@@ -2587,7 +2585,7 @@ ALTER TABLE ONLY public.gorp_migrations
 
 
 --
--- Name: multicast_group multicast_group_pkey; Type: CONSTRAINT; Schema: public; Owner: chirpstack_ns
+-- Name: multicast_group multicast_group_pkey; Type: CONSTRAINT; Schema: public; Owner: chirpstack
 --
 
 ALTER TABLE ONLY public.multicast_group
@@ -2595,7 +2593,7 @@ ALTER TABLE ONLY public.multicast_group
 
 
 --
--- Name: multicast_queue multicast_queue_pkey; Type: CONSTRAINT; Schema: public; Owner: chirpstack_ns
+-- Name: multicast_queue multicast_queue_pkey; Type: CONSTRAINT; Schema: public; Owner: chirpstack
 --
 
 ALTER TABLE ONLY public.multicast_queue
@@ -2603,7 +2601,7 @@ ALTER TABLE ONLY public.multicast_queue
 
 
 --
--- Name: routing_profile routing_profile_pkey; Type: CONSTRAINT; Schema: public; Owner: chirpstack_ns
+-- Name: routing_profile routing_profile_pkey; Type: CONSTRAINT; Schema: public; Owner: chirpstack
 --
 
 ALTER TABLE ONLY public.routing_profile
@@ -2611,7 +2609,7 @@ ALTER TABLE ONLY public.routing_profile
 
 
 --
--- Name: service_profile service_profile_pkey; Type: CONSTRAINT; Schema: public; Owner: chirpstack_ns
+-- Name: service_profile service_profile_pkey; Type: CONSTRAINT; Schema: public; Owner: chirpstack
 --
 
 ALTER TABLE ONLY public.service_profile
@@ -2619,133 +2617,133 @@ ALTER TABLE ONLY public.service_profile
 
 
 --
--- Name: idx_device_activation_dev_eui; Type: INDEX; Schema: public; Owner: chirpstack_ns
+-- Name: idx_device_activation_dev_eui; Type: INDEX; Schema: public; Owner: chirpstack
 --
 
 CREATE INDEX idx_device_activation_dev_eui ON public.device_activation USING btree (dev_eui);
 
 
 --
--- Name: idx_device_activation_nonce_lookup; Type: INDEX; Schema: public; Owner: chirpstack_ns
+-- Name: idx_device_activation_nonce_lookup; Type: INDEX; Schema: public; Owner: chirpstack
 --
 
 CREATE INDEX idx_device_activation_nonce_lookup ON public.device_activation USING btree (join_eui, dev_eui, join_req_type, dev_nonce);
 
 
 --
--- Name: idx_device_device_profile_id; Type: INDEX; Schema: public; Owner: chirpstack_ns
+-- Name: idx_device_device_profile_id; Type: INDEX; Schema: public; Owner: chirpstack
 --
 
 CREATE INDEX idx_device_device_profile_id ON public.device USING btree (device_profile_id);
 
 
 --
--- Name: idx_device_mode; Type: INDEX; Schema: public; Owner: chirpstack_ns
+-- Name: idx_device_mode; Type: INDEX; Schema: public; Owner: chirpstack
 --
 
 CREATE INDEX idx_device_mode ON public.device USING btree (mode);
 
 
 --
--- Name: idx_device_queue_confirmed; Type: INDEX; Schema: public; Owner: chirpstack_ns
+-- Name: idx_device_queue_confirmed; Type: INDEX; Schema: public; Owner: chirpstack
 --
 
 CREATE INDEX idx_device_queue_confirmed ON public.device_queue USING btree (confirmed);
 
 
 --
--- Name: idx_device_queue_dev_eui; Type: INDEX; Schema: public; Owner: chirpstack_ns
+-- Name: idx_device_queue_dev_eui; Type: INDEX; Schema: public; Owner: chirpstack
 --
 
 CREATE INDEX idx_device_queue_dev_eui ON public.device_queue USING btree (dev_eui);
 
 
 --
--- Name: idx_device_queue_emit_at_time_since_gps_epoch; Type: INDEX; Schema: public; Owner: chirpstack_ns
+-- Name: idx_device_queue_emit_at_time_since_gps_epoch; Type: INDEX; Schema: public; Owner: chirpstack
 --
 
 CREATE INDEX idx_device_queue_emit_at_time_since_gps_epoch ON public.device_queue USING btree (emit_at_time_since_gps_epoch);
 
 
 --
--- Name: idx_device_queue_timeout_after; Type: INDEX; Schema: public; Owner: chirpstack_ns
+-- Name: idx_device_queue_timeout_after; Type: INDEX; Schema: public; Owner: chirpstack
 --
 
 CREATE INDEX idx_device_queue_timeout_after ON public.device_queue USING btree (timeout_after);
 
 
 --
--- Name: idx_device_routing_profile_id; Type: INDEX; Schema: public; Owner: chirpstack_ns
+-- Name: idx_device_routing_profile_id; Type: INDEX; Schema: public; Owner: chirpstack
 --
 
 CREATE INDEX idx_device_routing_profile_id ON public.device USING btree (routing_profile_id);
 
 
 --
--- Name: idx_device_service_profile_id; Type: INDEX; Schema: public; Owner: chirpstack_ns
+-- Name: idx_device_service_profile_id; Type: INDEX; Schema: public; Owner: chirpstack
 --
 
 CREATE INDEX idx_device_service_profile_id ON public.device USING btree (service_profile_id);
 
 
 --
--- Name: idx_gateway_gateway_profile_id; Type: INDEX; Schema: public; Owner: chirpstack_ns
+-- Name: idx_gateway_gateway_profile_id; Type: INDEX; Schema: public; Owner: chirpstack
 --
 
 CREATE INDEX idx_gateway_gateway_profile_id ON public.gateway USING btree (gateway_profile_id);
 
 
 --
--- Name: idx_gateway_profile_extra_channel_gw_profile_id; Type: INDEX; Schema: public; Owner: chirpstack_ns
+-- Name: idx_gateway_profile_extra_channel_gw_profile_id; Type: INDEX; Schema: public; Owner: chirpstack
 --
 
 CREATE INDEX idx_gateway_profile_extra_channel_gw_profile_id ON public.gateway_profile_extra_channel USING btree (gateway_profile_id);
 
 
 --
--- Name: idx_gateway_routing_profile_id; Type: INDEX; Schema: public; Owner: chirpstack_ns
+-- Name: idx_gateway_routing_profile_id; Type: INDEX; Schema: public; Owner: chirpstack
 --
 
 CREATE INDEX idx_gateway_routing_profile_id ON public.gateway USING btree (routing_profile_id);
 
 
 --
--- Name: idx_multicast_group_routing_profile_id; Type: INDEX; Schema: public; Owner: chirpstack_ns
+-- Name: idx_multicast_group_routing_profile_id; Type: INDEX; Schema: public; Owner: chirpstack
 --
 
 CREATE INDEX idx_multicast_group_routing_profile_id ON public.multicast_group USING btree (routing_profile_id);
 
 
 --
--- Name: idx_multicast_group_service_profile_id; Type: INDEX; Schema: public; Owner: chirpstack_ns
+-- Name: idx_multicast_group_service_profile_id; Type: INDEX; Schema: public; Owner: chirpstack
 --
 
 CREATE INDEX idx_multicast_group_service_profile_id ON public.multicast_group USING btree (service_profile_id);
 
 
 --
--- Name: idx_multicast_queue_emit_at_time_since_gps_epoch; Type: INDEX; Schema: public; Owner: chirpstack_ns
+-- Name: idx_multicast_queue_emit_at_time_since_gps_epoch; Type: INDEX; Schema: public; Owner: chirpstack
 --
 
 CREATE INDEX idx_multicast_queue_emit_at_time_since_gps_epoch ON public.multicast_queue USING btree (emit_at_time_since_gps_epoch);
 
 
 --
--- Name: idx_multicast_queue_multicast_group_id; Type: INDEX; Schema: public; Owner: chirpstack_ns
+-- Name: idx_multicast_queue_multicast_group_id; Type: INDEX; Schema: public; Owner: chirpstack
 --
 
 CREATE INDEX idx_multicast_queue_multicast_group_id ON public.multicast_queue USING btree (multicast_group_id);
 
 
 --
--- Name: idx_multicast_queue_schedule_at; Type: INDEX; Schema: public; Owner: chirpstack_ns
+-- Name: idx_multicast_queue_schedule_at; Type: INDEX; Schema: public; Owner: chirpstack
 --
 
 CREATE INDEX idx_multicast_queue_schedule_at ON public.multicast_queue USING btree (schedule_at);
 
 
 --
--- Name: device_activation device_activation_dev_eui_fkey; Type: FK CONSTRAINT; Schema: public; Owner: chirpstack_ns
+-- Name: device_activation device_activation_dev_eui_fkey; Type: FK CONSTRAINT; Schema: public; Owner: chirpstack
 --
 
 ALTER TABLE ONLY public.device_activation
@@ -2753,7 +2751,7 @@ ALTER TABLE ONLY public.device_activation
 
 
 --
--- Name: device device_device_profile_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: chirpstack_ns
+-- Name: device device_device_profile_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: chirpstack
 --
 
 ALTER TABLE ONLY public.device
@@ -2761,7 +2759,7 @@ ALTER TABLE ONLY public.device
 
 
 --
--- Name: device_multicast_group device_multicast_group_dev_eui_fkey; Type: FK CONSTRAINT; Schema: public; Owner: chirpstack_ns
+-- Name: device_multicast_group device_multicast_group_dev_eui_fkey; Type: FK CONSTRAINT; Schema: public; Owner: chirpstack
 --
 
 ALTER TABLE ONLY public.device_multicast_group
@@ -2769,7 +2767,7 @@ ALTER TABLE ONLY public.device_multicast_group
 
 
 --
--- Name: device_multicast_group device_multicast_group_multicast_group_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: chirpstack_ns
+-- Name: device_multicast_group device_multicast_group_multicast_group_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: chirpstack
 --
 
 ALTER TABLE ONLY public.device_multicast_group
@@ -2777,7 +2775,7 @@ ALTER TABLE ONLY public.device_multicast_group
 
 
 --
--- Name: device_queue device_queue_dev_eui_fkey; Type: FK CONSTRAINT; Schema: public; Owner: chirpstack_ns
+-- Name: device_queue device_queue_dev_eui_fkey; Type: FK CONSTRAINT; Schema: public; Owner: chirpstack
 --
 
 ALTER TABLE ONLY public.device_queue
@@ -2785,7 +2783,7 @@ ALTER TABLE ONLY public.device_queue
 
 
 --
--- Name: device device_routing_profile_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: chirpstack_ns
+-- Name: device device_routing_profile_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: chirpstack
 --
 
 ALTER TABLE ONLY public.device
@@ -2793,7 +2791,7 @@ ALTER TABLE ONLY public.device
 
 
 --
--- Name: device device_service_profile_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: chirpstack_ns
+-- Name: device device_service_profile_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: chirpstack
 --
 
 ALTER TABLE ONLY public.device
@@ -2801,7 +2799,7 @@ ALTER TABLE ONLY public.device
 
 
 --
--- Name: gateway_board gateway_board_gateway_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: chirpstack_ns
+-- Name: gateway_board gateway_board_gateway_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: chirpstack
 --
 
 ALTER TABLE ONLY public.gateway_board
@@ -2809,7 +2807,7 @@ ALTER TABLE ONLY public.gateway_board
 
 
 --
--- Name: gateway gateway_gateway_profile_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: chirpstack_ns
+-- Name: gateway gateway_gateway_profile_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: chirpstack
 --
 
 ALTER TABLE ONLY public.gateway
@@ -2817,7 +2815,7 @@ ALTER TABLE ONLY public.gateway
 
 
 --
--- Name: gateway_profile_extra_channel gateway_profile_extra_channel_gateway_profile_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: chirpstack_ns
+-- Name: gateway_profile_extra_channel gateway_profile_extra_channel_gateway_profile_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: chirpstack
 --
 
 ALTER TABLE ONLY public.gateway_profile_extra_channel
@@ -2825,7 +2823,7 @@ ALTER TABLE ONLY public.gateway_profile_extra_channel
 
 
 --
--- Name: gateway gateway_routing_profile_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: chirpstack_ns
+-- Name: gateway gateway_routing_profile_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: chirpstack
 --
 
 ALTER TABLE ONLY public.gateway
@@ -2833,7 +2831,7 @@ ALTER TABLE ONLY public.gateway
 
 
 --
--- Name: multicast_group multicast_group_routing_profile_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: chirpstack_ns
+-- Name: multicast_group multicast_group_routing_profile_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: chirpstack
 --
 
 ALTER TABLE ONLY public.multicast_group
@@ -2841,7 +2839,7 @@ ALTER TABLE ONLY public.multicast_group
 
 
 --
--- Name: multicast_group multicast_group_service_profile_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: chirpstack_ns
+-- Name: multicast_group multicast_group_service_profile_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: chirpstack
 --
 
 ALTER TABLE ONLY public.multicast_group
@@ -2849,7 +2847,7 @@ ALTER TABLE ONLY public.multicast_group
 
 
 --
--- Name: multicast_queue multicast_queue_gateway_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: chirpstack_ns
+-- Name: multicast_queue multicast_queue_gateway_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: chirpstack
 --
 
 ALTER TABLE ONLY public.multicast_queue
@@ -2857,7 +2855,7 @@ ALTER TABLE ONLY public.multicast_queue
 
 
 --
--- Name: multicast_queue multicast_queue_multicast_group_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: chirpstack_ns
+-- Name: multicast_queue multicast_queue_multicast_group_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: chirpstack
 --
 
 ALTER TABLE ONLY public.multicast_queue

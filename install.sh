@@ -13,11 +13,11 @@ cp init_sql.sql /tmp/init_sql.sql -f
 apt -f -y install dialog mosquitto mosquitto-clients redis-server redis-tools ruby-redis postgresql postgresql-doc postgresql-doc-14 apt-transport-https dirmngr isag
 
 # 2. setup PostgreSQL databases and users
-sudo -u -i postgres psql -c "create role chirpstack with login password 'chirpstack';"
-sudo -u -i postgres psql -c "create database chirpstack with owner chirpstack;"
-sudo -u -i postgres psql chirpstack -c "create extension pg_trgm;"
-sudo -u -i postgres psql chirpstack -c "create extension hstore;"
-sudo -u -i postgres psql -U postgres -f /tmp/init_sql.sql
+sudo -u postgres psql -c "create role chirpstack with login password 'chirpstack';"
+sudo -u postgres psql -c "create database chirpstack with owner chirpstack;"
+sudo -u postgres psql chirpstack -c "create extension pg_trgm;"
+sudo -u postgres psql chirpstack -c "create extension hstore;"
+sudo -u postgres psql -U postgres -f /tmp/init_sql.sql
 rm -f /tmp/init_sql.sql
 
 #3. install ChirpStack packages
